@@ -1,0 +1,770 @@
+local	tempBit_1=	0
+local	tempBit_2=	0
+local	tempBit_3=	0
+local	tempBit_4=	0
+local	tempBit_5=	0
+local	tempBit_6=	0
+local	tempBit_7=	0
+local	tempBit_8=	0
+local	tempBit_9=	0
+local	tempBit_10=	0
+local	tempBit_11=	0
+local	tempBit_12=	0
+local	tempBit_13=	0
+local	tempBit_14=	0
+local	tempBit_15=	0
+local	tempBit_16=	0
+local	tempBit_17=	0
+local	tempBit_18=	0
+local	tempBit_19=	0
+local	tempBit_21=	0
+local	tempBit_22=	0
+local	tempBit_23=	0
+local	tempBit_24=	0
+local	tempBit_25=	0
+local	tempBit_26=	0
+local	tempBit_27=	0
+local	tempBit_28=	0
+local	tempBit_29=	0
+local	tempBit_30=	0
+local	tempBit_31=	0
+local	tempBit_32=	0
+local	tempBit_33=	0
+local	ALARM_Diff_01=	0
+local	ALARM_Diff_02=	0
+local	ALARM_Diff_03=	0
+local	ALARM_Diff_04=	0
+local	ALARM_Diff_05=	0
+local	ALARM_Diff_06=	0
+local	ALARM_Diff_07=	0
+local	ALARM_Diff_08=	0
+local	ALARM_Diff_09=	0
+local	ALARM_Diff_10=	0
+local	ALARM_Diff_11=	0
+local	ALARM_Diff_12=	0
+local	ALARM_Diff_13=	0
+local	ALARM_Diff_14=	0
+local	ALARM_Diff_15=	0
+local	ALARM_Diff_16=	0
+local	ALARM_Diff_17=	0
+local	ALARM_Diff_18=	0
+local	ALARM_Diff_19=	0
+local	ALARM_Diff_21=	0
+local	ALARM_Diff_22=	0
+local	ALARM_Diff_23=	0
+local	ALARM_Diff_24=	0
+local	ALARM_Diff_25=	0
+local	ALARM_Diff_26=	0
+local	ALARM_Diff_27=	0
+local	ALARM_Diff_28=	0
+local	ALARM_Diff_29=	0
+local	ALARM_Diff_30=	0
+local	ALARM_Diff_31=	0
+local	ALARM_Diff_32=	0
+local	ALARM_Diff_33=	0
+
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
+end
+
+local function getAddrValue(addr)
+    local value = addr_getword(addr)
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
+end
+
+function discordbot.main()
+  year = os.date("%Y")
+  month = os.date("%m")
+  day = os.date("%d")
+  hour = os.date("%H")
+  minute = os.date("%M")
+  second = os.date("%S")
+--   dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+  
+  ddtime =  hour..":"..minute..":"..second == "10:00:00"
+  ddtime_0 =  hour..":"..minute..":"..second == "10:02:00"
+    
+  local message = ''
+  
+--   if second == "00" or second == "05" or second == "10" or second == "15" then
+--       message = 'DateTime : '..dtime..'\nCHILLER_A01 = TEST DUST ALARM'
+        
+--       print("message="..message)
+--       sendDiscordMessage(webhookUrl, message)
+      
+--   end
+
+  --check script
+    ------------
+ if ddtime then
+    message = '\nDataTime : \n'..dtime..'\n************************** \nALARM Diff.Pressure OVER\n**************************'
+    getMessageUrl(message)
+ end
+ 
+ ----------------------------------------ALARM_Diff_01--------------------------------------------------
+  local ALARM_Diff_01 = addr_getbit("@ALARM_Diff_01");
+  local Diff_01 = 'Diff. Dust No.01= '..addr_getword("@Diff_01")..'\tmmAq';
+  local message_Diff_01 = ''
+  print("b=="..ALARM_Diff_01)
+    if ALARM_Diff_01 == 1 and ddtime then
+      message_Diff_01 = '\n'..Diff_01..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_01)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_01)
+    end
+    tempBit_1 = ALARM_Diff_01
+
+----------------------------------------ALARM_Diff_02--------------------------------------------------
+  local ALARM_Diff_02 = addr_getbit("@ALARM_Diff_02");
+  local Diff_02 = 'Diff. Dust No.02= '..addr_getword("@Diff_02")..'\tmmAq';
+  local message_Diff_02 = ''
+  print("b=="..ALARM_Diff_02)
+    if ALARM_Diff_02 == 1 and ddtime then
+      message_Diff_02 = '\n'..Diff_02..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_02)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_02)
+    end
+    tempBit_2 = ALARM_Diff_02
+
+----------------------------------------ALARM_Diff_03--------------------------------------------------
+  local ALARM_Diff_03 = addr_getbit("@ALARM_Diff_03");
+  local Diff_03 = 'Diff. Dust No.03= '..addr_getword("@Diff_03")..'\tmmAq';
+  local message_Diff_03 = ''
+  print("b=="..ALARM_Diff_03)
+    if ALARM_Diff_03 == 1 and ddtime then
+      message_Diff_03 = '\n'..Diff_03..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_03)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_03)
+    end
+    tempBit_3 = ALARM_Diff_03
+
+----------------------------------------ALARM_Diff_04--------------------------------------------------
+  local ALARM_Diff_04 = addr_getbit("@ALARM_Diff_04");
+  local Diff_04 = 'Diff. Dust No.04= '..addr_getword("@Diff_04")..'\tmmAq';
+  local message_Diff_04 = ''
+  print("b=="..ALARM_Diff_04)
+    if ALARM_Diff_04 == 1 and ddtime then
+      message_Diff_04 = '\n'..Diff_04..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_04)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_04)
+    end
+    tempBit_4 = ALARM_Diff_04
+
+----------------------------------------ALARM_Diff_05--------------------------------------------------
+  local ALARM_Diff_05 = addr_getbit("@ALARM_Diff_05");
+  local Diff_05 = 'Diff. Dust No.05= '..addr_getword("@Diff_05")..'\tmmAq';
+  local message_Diff_05 = ''
+  print("b=="..ALARM_Diff_05)
+    if ALARM_Diff_05 == 1 and ddtime then
+      message_Diff_05 = '\n'..Diff_05..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_05)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_05)
+    end
+    tempBit_5 = ALARM_Diff_05
+
+----------------------------------------ALARM_Diff_06--------------------------------------------------
+  local ALARM_Diff_06 = addr_getbit("@ALARM_Diff_06");
+  local Diff_06 = 'Diff. Dust No.06= '..addr_getword("@Diff_06")..'\tmmAq';
+  local message_Diff_06 = ''
+  print("b=="..ALARM_Diff_06)
+    if ALARM_Diff_06 == 1 and ddtime then
+      message_Diff_06 = '\n'..Diff_06..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_06)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_06)
+    end
+    tempBit_6 = ALARM_Diff_06
+
+----------------------------------------ALARM_Diff_07--------------------------------------------------
+  local ALARM_Diff_07 = addr_getbit("@ALARM_Diff_07");
+  local Diff_07 = 'Diff. Dust No.07= '..addr_getword("@Diff_07")..'\tmmAq';
+  local message_Diff_07 = ''
+  print("b=="..ALARM_Diff_07)
+    if ALARM_Diff_07 == 1 and ddtime then
+      message_Diff_07 = '\n'..Diff_07..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_07)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_07)
+    end
+    tempBit_7 = ALARM_Diff_07
+
+----------------------------------------ALARM_Diff_08--------------------------------------------------
+  local ALARM_Diff_08 = addr_getbit("@ALARM_Diff_08");
+  local Diff_08 = 'Diff. Dust No.08= '..addr_getword("@Diff_08")..'\tmmAq';
+  local message_Diff_08 = ''
+  print("b=="..ALARM_Diff_08)
+    if ALARM_Diff_08 == 1 and ddtime then
+      message_Diff_08 = '\n'..Diff_08..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_08)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_08)
+    end
+    tempBit_8 = ALARM_Diff_08
+
+----------------------------------------ALARM_Diff_09--------------------------------------------------
+  local ALARM_Diff_09 = addr_getbit("@ALARM_Diff_09");
+  local Diff_09 = 'Diff. Dust No.09= '..addr_getword("@Diff_09")..'\tmmAq';
+  local message_Diff_09 = ''
+  print("b=="..ALARM_Diff_09)
+    if ALARM_Diff_09 == 1 and ddtime then
+      message_Diff_09 = '\n'..Diff_09..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_09)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_09)
+    end
+    tempBit_9 = ALARM_Diff_09
+
+----------------------------------------ALARM_Diff_10--------------------------------------------------
+  local ALARM_Diff_10 = addr_getbit("@ALARM_Diff_10");
+  local Diff_10 = 'Diff. Dust No.10= '..addr_getword("@Diff_10")..'\tmmAq';
+  local message_Diff_10 = ''
+  print("b=="..ALARM_Diff_10)
+    if ALARM_Diff_10 == 1 and ddtime then
+      message_Diff_10 = '\n'..Diff_10..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_10)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_10)
+    end
+    tempBit_10 = ALARM_Diff_10
+
+----------------------------------------ALARM_Diff_11--------------------------------------------------
+  local ALARM_Diff_11 = addr_getbit("@ALARM_Diff_11");
+  local Diff_11 = 'Diff. Dust No.11= '..addr_getword("@Diff_11")..'\tmmAq';
+  local message_Diff_11 = ''
+  print("b=="..ALARM_Diff_11)
+    if ALARM_Diff_11 == 1 and ddtime then
+      message_Diff_11 = '\n'..Diff_11..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_11)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_11)
+    end
+    tempBit_11 = ALARM_Diff_11
+
+----------------------------------------ALARM_Diff_12--------------------------------------------------
+  local ALARM_Diff_12 = addr_getbit("@ALARM_Diff_12");
+  local Diff_12 = 'Diff. Dust No.12= '..addr_getword("@Diff_12")..'\tmmAq';
+  local message_Diff_12 = ''
+  print("b=="..ALARM_Diff_12)
+    if ALARM_Diff_12 == 1 and ddtime then
+      message_Diff_12 = '\n'..Diff_12..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_12)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_12)
+    end
+    tempBit_12 = ALARM_Diff_12
+
+----------------------------------------ALARM_Diff_13--------------------------------------------------
+  local ALARM_Diff_13 = addr_getbit("@ALARM_Diff_13");
+  local Diff_13 = 'Diff. Dust No.13= '..addr_getword("@Diff_13")..'\tmmAq';
+  local message_Diff_13 = ''
+  print("b=="..ALARM_Diff_13)
+    if ALARM_Diff_13 == 1 and ddtime then
+      message_Diff_13 = '\n'..Diff_13..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_13)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_13)
+    end
+    tempBit_13 = ALARM_Diff_13
+
+----------------------------------------ALARM_Diff_14--------------------------------------------------
+  local ALARM_Diff_14 = addr_getbit("@ALARM_Diff_14");
+  local Diff_14 = 'Diff. Dust No.14= '..addr_getword("@Diff_14")..'\tmmAq';
+  local message_Diff_14 = ''
+  print("b=="..ALARM_Diff_14)
+    if ALARM_Diff_14 == 1 and ddtime then
+      message_Diff_14 = '\n'..Diff_14..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_14)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_14)
+    end
+    tempBit_14 = ALARM_Diff_14
+
+----------------------------------------ALARM_Diff_15--------------------------------------------------
+  local ALARM_Diff_15 = addr_getbit("@ALARM_Diff_15");
+  local Diff_15 = 'Diff. Dust No.15= '..addr_getword("@Diff_15")..'\tmmAq';
+  local message_Diff_15 = ''
+  print("b=="..ALARM_Diff_15)
+    if ALARM_Diff_15 == 1 and ddtime then
+      message_Diff_15 = '\n'..Diff_15..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_15)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_15)
+    end
+    tempBit_15 = ALARM_Diff_15
+
+----------------------------------------ALARM_Diff_16--------------------------------------------------
+  local ALARM_Diff_16 = addr_getbit("@ALARM_Diff_16");
+  local Diff_16 = 'Diff. Dust No.16= '..addr_getword("@Diff_16")..'\tmmAq';
+  local message_Diff_16 = ''
+  print("b=="..ALARM_Diff_16)
+    if ALARM_Diff_16 == 1 and ddtime then
+      message_Diff_16 = '\n'..Diff_16..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_16)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_16)
+    end
+    tempBit_16 = ALARM_Diff_16
+
+----------------------------------------ALARM_Diff_17--------------------------------------------------
+  local ALARM_Diff_17 = addr_getbit("@ALARM_Diff_17");
+  local Diff_17 = 'Diff. Dust No.17= '..addr_getword("@Diff_17")..'\tmmAq';
+  local message_Diff_17 = ''
+  print("b=="..ALARM_Diff_17)
+    if ALARM_Diff_17 == 1 and ddtime then
+      message_Diff_17 = '\n'..Diff_17..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_17)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_17)
+    end
+    tempBit_17 = ALARM_Diff_17
+
+----------------------------------------ALARM_Diff_18--------------------------------------------------
+  local ALARM_Diff_18 = addr_getbit("@ALARM_Diff_18");
+  local Diff_18 = 'Diff. Dust No.18= '..addr_getword("@Diff_18")..'\tmmAq';
+  local message_Diff_18 = ''
+  print("b=="..ALARM_Diff_18)
+    if ALARM_Diff_18 == 1 and ddtime then
+      message_Diff_18 = '\n'..Diff_18..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_18)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_18)
+    end
+    tempBit_18 = ALARM_Diff_18
+
+----------------------------------------ALARM_Diff_19--------------------------------------------------
+  local ALARM_Diff_19 = addr_getbit("@ALARM_Diff_19");
+  local Diff_19 = 'Diff. Dust No.19= '..addr_getword("@Diff_19")..'\tmmAq';
+  local message_Diff_19 = ''
+  print("b=="..ALARM_Diff_19)
+    if ALARM_Diff_19 == 1 and ddtime then
+      message_Diff_19 = '\n'..Diff_19..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_19)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_19)
+    end
+    tempBit_19 = ALARM_Diff_19
+
+----------------------------------------ALARM_Diff_21--------------------------------------------------
+  local ALARM_Diff_21 = addr_getbit("@ALARM_Diff_21");
+  local Diff_21 = 'Diff. Dust No.21= '..addr_getword("@Diff_21")..'\tmmAq';
+  local message_Diff_21 = ''
+  print("b=="..ALARM_Diff_21)
+    if ALARM_Diff_21 == 1 and ddtime then
+      message_Diff_21 = '\n'..Diff_21..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_21)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_21)
+    end
+    tempBit_21 = ALARM_Diff_21
+
+----------------------------------------ALARM_Diff_23--------------------------------------------------
+  local ALARM_Diff_23 = addr_getbit("@ALARM_Diff_23");
+  local Diff_23 = 'Diff. Dust No.23= '..addr_getword("@Diff_23")..'\tmmAq';
+  local message_Diff_23 = ''
+  print("b=="..ALARM_Diff_23)
+    if ALARM_Diff_23 == 1 and ddtime then
+      message_Diff_23 = '\n'..Diff_23..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_23)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_23)
+    end
+    tempBit_23 = ALARM_Diff_23
+----------------------------------------ALARM_Diff_25--------------------------------------------------
+  local ALARM_Diff_25 = addr_getbit("@ALARM_Diff_25");
+  local Diff_25 = 'Diff. Dust No.25= '..addr_getword("@Diff_25")..'\tmmAq';
+  local message_Diff_25 = ''
+  print("b=="..ALARM_Diff_25)
+    if ALARM_Diff_25 == 1 and ddtime then
+      message_Diff_25 = '\n'..Diff_25..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_25)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_25)
+     end
+    tempBit_25 = ALARM_Diff_25
+----------------------------------------ALARM_Diff_26--------------------------------------------------
+  local ALARM_Diff_26 = addr_getbit("@ALARM_Diff_26");
+  local Diff_26 = 'Diff. Dust No.26= '..addr_getword("@Diff_26")..'\tmmAq';
+  local message_Diff_26 = ''
+  print("b=="..ALARM_Diff_26)
+    if ALARM_Diff_26 == 1 and ddtime then
+      message_Diff_26 = '\n'..Diff_26..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_26)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_26)
+     end
+    tempBit_26 = ALARM_Diff_26
+----------------------------------------ALARM_Diff_27--------------------------------------------------
+  local ALARM_Diff_27 = addr_getbit("@ALARM_Diff_27");
+  local Diff_27 = 'Diff. Dust No.Diff_27= '..addr_getword("@Diff_27")..'\tmmAq';
+  local message_Diff_27 = ''
+  print("b=="..ALARM_Diff_27)
+    if ALARM_Diff_27 == 1 and ddtime then
+      message_Diff_27 = '\n'..Diff_27..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_27)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_27)
+     end
+    tempBit_27 = ALARM_Diff_27
+----------------------------------------ALARM_Diff_28--------------------------------------------------
+  local ALARM_Diff_28 = addr_getbit("@ALARM_Diff_28");
+  local Diff_28 = 'Diff. Dust No.28= '..addr_getword("@Diff_28")..'\tmmAq';
+  local message_Diff_28 = ''
+  print("b=="..ALARM_Diff_28)
+    if ALARM_Diff_28 == 1 and ddtime then
+      message_Diff_28 = '\n'..Diff_28..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_28)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_28)
+    end
+    tempBit_28 = ALARM_Diff_28
+
+----------------------------------------ALARM_Diff_30--------------------------------------------------
+  local ALARM_Diff_30 = addr_getbit("@ALARM_Diff_30");
+  local Diff_30 = 'Diff. Dust No.30= '..addr_getword("@Diff_30")..'\tmmAq';
+  local message_Diff_30 = ''
+  print("b=="..ALARM_Diff_30)
+    if ALARM_Diff_30 == 1 and ddtime then
+      message_Diff_30 = '\n'..Diff_30..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_30)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_30)
+    end
+    tempBit_30 = ALARM_Diff_30
+
+----------------------------------------ALARM_Diff_32--------------------------------------------------
+  local ALARM_Diff_32 = addr_getbit("@ALARM_Diff_32");
+  local Diff_32 = 'Diff. Dust No.32= '..addr_getword("@Diff_32")..'\tmmAq';
+  local message_Diff_32 = ''
+  print("b=="..ALARM_Diff_32)
+    if ALARM_Diff_32 == 1 and ddtime then
+      message_Diff_32 = '\n'..Diff_32..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_32)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_32)
+    end
+    tempBit_32 = ALARM_Diff_32
+----------------------------------ALARM_Diff_33--------------------------------------------------
+  local ALARM_Diff_33 = addr_getbit("@ALARM_Diff_33");
+  local Diff_33 = 'Diff. Dust No.33= '..addr_getword("@Diff_33")..'\tmmAq';
+  local message_Diff_33 = ''
+  print("b=="..ALARM_Diff_33)
+    if ALARM_Diff_33 == 1 and ddtime then
+      message_Diff_33 = '\n'..Diff_33..
+                        '\nOver 250 mmAq'
+      getMessageUrl(message_Diff_33)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_33)
+    end
+    tempBit_33 = ALARM_Diff_33
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if ddtime_0 then
+        message = '\nDataTime : \n'..dtime..'\n************************** \nDiff.Pressure = 0\nPlease Chack Sensor\nOVER = Over 700 mmAq\nER 2 = Over Range\n**************************'
+        getMessageUrl(message)
+    end
+----------------------------------------ALARM_Diff_01--------------------------------------------------
+ local Diff_01 = addr_getword("@Diff_01");
+  local message_Diff_01 = ''
+  print("b=="..Diff_01)
+    if Diff_01 == 0 and ddtime_0 then
+      message_Diff_01 = '\tDiff_01 = 0 '
+      getMessageUrl(message_Diff_01)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_01)
+    end
+    tempBit_1 = ALARM_Diff_01
+----------------------------------------ALARM_Diff_02--------------------------------------------------
+  local Diff_02 = addr_getword("@Diff_02");
+  local message_Diff_02 = ''
+  print("b=="..Diff_02)
+    if Diff_02 == 0 and ddtime_0 then
+      message_Diff_02 = '\tDiff_02 = 0 '
+      getMessageUrl(message_Diff_02)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_02)
+    end
+    tempBit_2 = ALARM_Diff_02
+----------------------------------------ALARM_Diff_03--------------------------------------------------
+  local Diff_03 = addr_getword("@Diff_03");
+  local message_Diff_03 = ''
+  print("b=="..Diff_03)
+    if Diff_03 == 0 and ddtime_0 then
+      message_Diff_03 = '\tDiff_03 = 0 '
+      getMessageUrl(message_Diff_03)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_03)
+    end
+    tempBit_3 = ALARM_Diff_03
+----------------------------------------ALARM_Diff_04--------------------------------------------------
+  local Diff_04 = addr_getword("@Diff_04");
+  local message_Diff_04 = ''
+  print("b=="..Diff_04)
+    if Diff_04 == 0 and ddtime_0 then
+      message_Diff_04 = '\tDiff_04 = 0 '
+      getMessageUrl(message_Diff_04)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_04)
+    end
+    tempBit_4 = ALARM_Diff_04
+----------------------------------------ALARM_Diff_05--------------------------------------------------
+  local Diff_05 = addr_getword("@Diff_05");
+  local message_Diff_05 = ''
+  print("b=="..Diff_05)
+    if Diff_05 == 0 and ddtime_0 then
+      message_Diff_05 = '\tDiff_05 = 0 '
+      getMessageUrl(message_Diff_05)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_05)
+    end
+    tempBit_5 = ALARM_Diff_05
+----------------------------------------ALARM_Diff_06--------------------------------------------------
+  local Diff_06 = addr_getword("@Diff_06");
+  local message_Diff_06 = ''
+  print("b=="..Diff_06)
+    if Diff_06 == 0 and ddtime_0 then
+      message_Diff_06 = '\tDiff_06 = 0 '
+      getMessageUrl(message_Diff_06)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_06)
+    end
+    tempBit_6 = ALARM_Diff_06
+----------------------------------------ALARM_Diff_07--------------------------------------------------
+  local Diff_07 = addr_getword("@Diff_07");
+  local message_Diff_07 = ''
+  print("b=="..Diff_07)
+    if Diff_07 == 0 and ddtime_0 then
+      message_Diff_07 = '\tDiff_07 = 0 '
+      getMessageUrl(message_Diff_07)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_07)
+    end
+    tempBit_7 = ALARM_Diff_07
+----------------------------------------ALARM_Diff_08--------------------------------------------------
+  local Diff_08 = addr_getword("@Diff_08");
+  local message_Diff_08 = ''
+  print("b=="..Diff_08)
+    if Diff_08 == 0 and ddtime_0 then
+      message_Diff_08 = '\tDiff_08 = 0 '
+      getMessageUrl(message_Diff_08)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_08)
+    end
+    tempBit_8 = ALARM_Diff_08
+----------------------------------------ALARM_Diff_09--------------------------------------------------
+  local Diff_09 = addr_getword("@Diff_09");
+  local message_Diff_09 = ''
+  print("b=="..Diff_09)
+    if Diff_09 == 0 and ddtime_0 then
+      message_Diff_09 = '\tDiff_09 = 0 '
+      getMessageUrl(message_Diff_09)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_09)
+    end
+    tempBit_9 = ALARM_Diff_09
+----------------------------------------ALARM_Diff_10--------------------------------------------------
+  local Diff_10 = addr_getword("@Diff_10");
+  local message_Diff_10 = ''
+  print("b=="..Diff_10)
+    if Diff_10 == 0 and ddtime_0 then
+      message_Diff_10 = '\tDiff_10 = 0 '
+      getMessageUrl(message_Diff_10)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_10)
+    end
+    tempBit_10 = ALARM_Diff_10
+----------------------------------------ALARM_Diff_11--------------------------------------------------
+  local Diff_11 = addr_getword("@Diff_11");
+  local message_Diff_11 = ''
+  print("b=="..Diff_11)
+    if Diff_11 == 0 and ddtime_0 then
+      message_Diff_11 = '\tDiff_11 = 0 '
+      getMessageUrl(message_Diff_11)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_11)
+    end
+    tempBit_11 = ALARM_Diff_11
+----------------------------------------ALARM_Diff_12--------------------------------------------------
+  local Diff_12 = addr_getword("@Diff_12");
+  local message_Diff_12 = ''
+  print("b=="..Diff_12)
+    if Diff_12 == 0 and ddtime_0 then
+      message_Diff_12 = '\tDiff_12 = 0 '
+      getMessageUrl(message_Diff_12)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_12)
+    end
+    tempBit_12 = ALARM_Diff_12
+----------------------------------------ALARM_Diff_13--------------------------------------------------
+  local Diff_13 = addr_getword("@Diff_13");
+  local message_Diff_13 = ''
+  print("b=="..Diff_13)
+    if Diff_13 == 0 and ddtime_0 then
+      message_Diff_13 = '\tDiff_13 = 0 '
+      getMessageUrl(message_Diff_13)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_13)
+    end
+    tempBit_13 = ALARM_Diff_13
+----------------------------------------ALARM_Diff_14--------------------------------------------------
+  local Diff_14 = addr_getword("@Diff_14");
+  local message_Diff_14 = ''
+  print("b=="..Diff_14)
+    if Diff_14 == 0 and ddtime_0 then
+      message_Diff_14 = '\tDiff_14 = 0 '
+      getMessageUrl(message_Diff_14)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_14)
+    end
+    tempBit_14 = ALARM_Diff_14
+----------------------------------------ALARM_Diff_15--------------------------------------------------
+  local Diff_15 = addr_getword("@Diff_15");
+  local message_Diff_15 = ''
+  print("b=="..Diff_15)
+    if Diff_15 == 0 and ddtime_0 then
+      message_Diff_15 = '\tDiff_15 = 0 '
+      getMessageUrl(message_Diff_15)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_15)
+    end
+    tempBit_15 = ALARM_Diff_15
+----------------------------------------ALARM_Diff_16--------------------------------------------------
+  local Diff_16 = addr_getword("@Diff_16");
+  local message_Diff_16 = ''
+  print("b=="..Diff_16)
+    if Diff_16 == 0 and ddtime_0 then
+      message_Diff_16 = '\tDiff_16 = 0 '
+      getMessageUrl(message_Diff_16)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_16)
+    end
+    tempBit_16 = ALARM_Diff_16
+----------------------------------------ALARM_Diff_17--------------------------------------------------
+  local Diff_17 = addr_getword("@Diff_17");
+  local message_Diff_17 = ''
+  print("b=="..Diff_17)
+    if Diff_17 == 0 and ddtime_0 then
+      message_Diff_17 = '\tDiff_17 = 0 '
+      getMessageUrl(message_Diff_17)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_17)
+    end
+    tempBit_17 = ALARM_Diff_17
+----------------------------------------ALARM_Diff_18--------------------------------------------------
+  local Diff_18 = addr_getword("@Diff_18");
+  local message_Diff_18 = ''
+  print("b=="..Diff_18)
+    if Diff_18 == 0 and ddtime_0 then
+      message_Diff_18 = '\tDiff_18 = 0 '
+      getMessageUrl(message_Diff_18)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_18)
+    end
+    tempBit_18 = ALARM_Diff_18
+----------------------------------------ALARM_Diff_19--------------------------------------------------
+  local Diff_19 = addr_getword("@Diff_19");
+  local message_Diff_19 = ''
+  print("b=="..Diff_19)
+    if Diff_19 == 0 and ddtime_0 then
+      message_Diff_19 = '\tDiff_19 = 0 '
+      getMessageUrl(message_Diff_19)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_19)
+    end
+    tempBit_19 = ALARM_Diff_19
+----------------------------------------ALARM_Diff_21--------------------------------------------------
+  local Diff_21 = addr_getword("@Diff_21");
+  local message_Diff_21 = ''
+  print("b=="..Diff_21)
+    if Diff_21 == 0 and ddtime_0 then
+      message_Diff_21 = '\tDiff_21 = 0 '
+      getMessageUrl(message_Diff_21)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_21)
+    end
+    tempBit_21 = ALARM_Diff_21
+----------------------------------------ALARM_Diff_23--------------------------------------------------
+  local Diff_23 = addr_getword("@Diff_23");
+  local message_Diff_23 = ''
+  print("b=="..Diff_23)
+    if Diff_23 == 0 and ddtime_0 then
+      message_Diff_23 = '\tDiff_23 = 0 '
+      getMessageUrl(message_Diff_23)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_23)
+    end
+    tempBit_23 = ALARM_Diff_23
+----------------------------------------ALARM_Diff_24--------------------------------------------------
+  local Diff_24 = addr_getword("@Diff_24");
+  local message_Diff_24 = ''
+  print("b=="..Diff_24)
+    if Diff_24 == 0 and ddtime_0 then
+      message_Diff_24 = '\tDiff_24 = 0 '
+      getMessageUrl(message_Diff_24)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_24)
+    end
+    tempBit_24 = ALARM_Diff_24
+----------------------------------------ALARM_Diff_25--------------------------------------------------
+  local Diff_25 = addr_getword("@Diff_25");
+  local message_Diff_25 = ''
+  print("b=="..Diff_25)
+    if Diff_25 == 0 and ddtime_0 then
+      message_Diff_25 = '\tDiff_25 = 0 '
+      getMessageUrl(message_Diff_25)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_25)
+    end
+    tempBit_25 = ALARM_Diff_25
+----------------------------------------ALARM_Diff_26--------------------------------------------------
+  local Diff_26 = addr_getword("@Diff_26");
+  local message_Diff_26 = ''
+  print("b=="..Diff_26)
+    if Diff_26 == 0 and ddtime_0 then
+      message_Diff_26 = '\tDiff_26 = 0 '
+      getMessageUrl(message_Diff_26)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_26)
+    end
+    tempBit_26 = ALARM_Diff_26
+----------------------------------------ALARM_Diff_27--------------------------------------------------
+  local Diff_27 = addr_getword("@Diff_27");
+  local message_Diff_27 = ''
+  print("b=="..Diff_27)
+    if Diff_27 == 0 and ddtime_0 then
+      message_Diff_27 = '\tDiff_27 = 0 '
+      getMessageUrl(message_Diff_27)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_27)
+    end
+    tempBit_27 = ALARM_Diff_27
+
+----------------------------------------ALARM_Diff_32--------------------------------------------------
+  local Diff_32 = addr_getword("@Diff_32");
+  local message_Diff_32 = ''
+  print("b=="..Diff_32)
+    if Diff_32 == 0 and ddtime_0 then
+      message_Diff_32 = '\tDiff_32 = 0 '
+      getMessageUrl(message_Diff_32)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_32)
+    end
+    tempBit_32 = ALARM_Diff_32
+----------------------------------------ALARM_Diff_33--------------------------------------------------
+  local Diff_33 = addr_getword("@Diff_33");
+  local message_Diff_33 = ''
+  print("b=="..Diff_33)
+    if Diff_33 == 0 and ddtime_0 then
+      message_Diff_33 = '\tDiff_33 = 0 '
+      getMessageUrl(message_Diff_33)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_33)
+    end
+    tempBit_33 = ALARM_Diff_33
+    
+end
