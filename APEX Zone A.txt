@@ -1,0 +1,115 @@
+local tempBit_1 = 0
+local tempBit_2 = 0
+local tempBit_3 = 0
+local tempBit_4 = 0 
+local tempBit_5 = 0
+local CH_A01_Alarm_EQ = 0
+local CH_A02_Alarm_EQ = 0
+local CH_A03_Alarm_EQ = 0
+local CH_A04_Alarm_EQ = 0
+local CH_A08_Alarm_EQ = 0
+
+local https = require("https")
+local json = require("json")
+local ltn12 = require("ltn12")
+
+function getHttpsUrl(url,header,reqbody)
+   local body = {}
+   local bodyJson = json.encode(body)
+   local result_table, code, headers, status = https.request{
+       method = "POST",
+       url = url,
+       source = ltn12.source.string(reqbody),
+       headers = header,
+       sink = ltn12.sink.table(body)
+   }
+   print("code:"..code)
+   if code~= 200 then
+       return
+   else
+       return body
+   end
+end
+
+function getMessageUrl(lineMessage)
+   local url = ""
+   local reqMess = "content="..lineMessage
+   local headers =
+                {
+                        ["Content-Type"] = "application/x-www-form-urlencoded",
+                        ["Content-Length"] = #reqMess
+                }
+   
+   print("Get the link:"..url)
+   getHttpsUrl(url, headers, reqMess)
+end
+
+function discordbot.main()
+
+  year = os.date("%Y")
+  month = os.date("%m")
+  day = os.date("%d")
+  hour = os.date("%H")
+  minute = os.date("%M")
+  second = os.date("%S")
+  dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+  
+  local dtime2 = dtime
+  
+  local message = ''
+  
+  --------------------------------------------CH_A01_Alarm----------------------------------------------
+   local CH_A01_Alarm_EQ = addr_getbit("@CH_A01_Alarm_EQ");
+--   print("b=="..CH_A01_Alarm_EQ)
+   if CH_A01_Alarm_EQ == 1 and CH_A01_Alarm_EQ ~= tempBit_1 and CH_A01_Alarm_EQ ~= nil then
+       message = '\nDataTime : \n'..dtime..'\nCHILLER_A01 = ALARM'
+       getMessageUrl(message)
+       print("Notification pushed of triggering alarm,"..CH_A01_Alarm_EQ)
+
+   end
+   tempBit_1 = CH_A01_Alarm_EQ
+   
+   --------------------------------------------CH_A02_Alarm----------------------------------------------
+  local CH_A02_Alarm_EQ = addr_getbit("@CH_A02_Alarm_EQ");
+--   print("b=="..CH_A02_Alarm_EQ)
+  if CH_A02_Alarm_EQ == 1 and CH_A02_Alarm_EQ ~= tempBit_2 and CH_A02_Alarm_EQ ~= nil then
+      message = '\nDataTime : \n'..dtime..'\nCHILLER_A02 = ALARM'
+      getMessageUrl(message)
+      print("Notification pushed of triggering alarm,"..CH_A02_Alarm_EQ)
+
+  end
+  tempBit_2 = CH_A02_Alarm_EQ
+  
+  --------------------------------------------CH_A03_Alarm----------------------------------------------
+  local CH_A03_Alarm_EQ = addr_getbit("@CH_A03_Alarm_EQ");
+--   print("b=="..CH_A03_Alarm_EQ)
+  if CH_A03_Alarm_EQ == 1 and CH_A03_Alarm_EQ ~= tempBit_3 and CH_A03_Alarm_EQ ~= nil then
+      message = '\nDataTime : \n'..dtime..'\nCHILLER_A03 = ALARM'
+      getMessageUrl(message)
+      print("Notification pushed of triggering alarm,"..CH_A03_Alarm_EQ)
+
+  end
+  tempBit_3 = CH_A03_Alarm_EQ
+  
+  --------------------------------------------CH_A04_Alarm----------------------------------------------
+   local CH_A04_Alarm_EQ = addr_getbit("@CH_A04_Alarm_EQ");
+--   print("b=="..CH_A04_Alarm_EQ)
+   if CH_A04_Alarm_EQ == 1 and CH_A04_Alarm_EQ ~= tempBit_4 and CH_A04_Alarm_EQ ~= nil then
+       message = '\nDataTime : \n'..dtime..'\nCHILLER_A04 = ALARM'
+       getMessageUrl(message)
+       print("Notification pushed of triggering alarm,"..CH_A04_Alarm_EQ)
+
+   end
+   tempBit_4 = CH_A04_Alarm_EQ
+--------------------------------------------CH_A08_Alarm----------------------------------------------
+   local CH_A08_Alarm_EQ = addr_getbit("@CH_A08_Alarm_EQ");
+--   print("b=="..CH_A08_Alarm_EQ)
+   if CH_A08_Alarm_EQ == 1 and CH_A08_Alarm_EQ ~= tempBit_5 and CH_A08_Alarm_EQ ~= nil then
+       message = '\nDataTime : \n'..dtime..'\nCHILLER_A08 = ALARM'
+       getMessageUrl(message)
+       print("Notification pushed of triggering alarm,"..CH_A08_Alarm_EQ)
+
+   end
+   tempBit_5 = CH_A08_Alarm_EQ
+   
+end
