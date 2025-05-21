@@ -9,43 +9,43 @@ local CH_A03_Alarm_EQ = 0
 local CH_A04_Alarm_EQ = 0
 local CH_A08_Alarm_EQ = 0
 
-local https = require("https")
-local json = require("json")
-local ltn12 = require("ltn12")
-
-function getHttpsUrl(url,header,reqbody)
-   local body = {}
-   local bodyJson = json.encode(body)
-   local result_table, code, headers, status = https.request{
-       method = "POST",
-       url = url,
-       source = ltn12.source.string(reqbody),
-       headers = header,
-       sink = ltn12.sink.table(body)
-   }
-   print("code:"..code)
-   if code~= 200 then
-       return
-   else
-       return body
-   end
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
 end
 
-function getMessageUrl(lineMessage)
-   local url = ""
-   local reqMess = "content="..lineMessage
-   local headers =
-                {
-                        ["Content-Type"] = "application/x-www-form-urlencoded",
-                        ["Content-Length"] = #reqMess
-                }
-   
-   print("Get the link:"..url)
-   getHttpsUrl(url, headers, reqMess)
-end
 
 function discordbot.main()
-
+    
   year = os.date("%Y")
   month = os.date("%m")
   day = os.date("%d")
@@ -54,16 +54,21 @@ function discordbot.main()
   second = os.date("%S")
   dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
   
-  local dtime2 = dtime
-  
   local message = ''
   
+--   if second == "00" or second == "05" or second == "10" or second == "15" then
+--       message = 'DateTime : '..dtime..'\nCHILLER_A01 = TEST ALARM'
+        
+--       print("message="..message)
+--       sendDiscordMessage(webhookUrl, message)
+      
+--   end
   --------------------------------------------CH_A01_Alarm----------------------------------------------
    local CH_A01_Alarm_EQ = addr_getbit("@CH_A01_Alarm_EQ");
 --   print("b=="..CH_A01_Alarm_EQ)
    if CH_A01_Alarm_EQ == 1 and CH_A01_Alarm_EQ ~= tempBit_1 and CH_A01_Alarm_EQ ~= nil then
        message = 'DateTime : '..dtime..'\nCHILLER_A01 = ALARM'
-       getMessageUrl(message)
+       sendDiscordMessage(webhookUrl, message)
        print("Notification pushed of triggering alarm,"..CH_A01_Alarm_EQ)
 
    end
@@ -74,7 +79,7 @@ function discordbot.main()
 --   print("b=="..CH_A02_Alarm_EQ)
   if CH_A02_Alarm_EQ == 1 and CH_A02_Alarm_EQ ~= tempBit_2 and CH_A02_Alarm_EQ ~= nil then
       message = 'DateTime : '..dtime..'\nCHILLER_A02 = ALARM'
-      getMessageUrl(message)
+      sendDiscordMessage(webhookUrl, message)
       print("Notification pushed of triggering alarm,"..CH_A02_Alarm_EQ)
 
   end
@@ -85,7 +90,7 @@ function discordbot.main()
 --   print("b=="..CH_A03_Alarm_EQ)
   if CH_A03_Alarm_EQ == 1 and CH_A03_Alarm_EQ ~= tempBit_3 and CH_A03_Alarm_EQ ~= nil then
       message = 'DateTime : '..dtime..'\nCHILLER_A03 = ALARM'
-      getMessageUrl(message)
+      sendDiscordMessage(webhookUrl, message)
       print("Notification pushed of triggering alarm,"..CH_A03_Alarm_EQ)
 
   end
@@ -96,7 +101,7 @@ function discordbot.main()
 --   print("b=="..CH_A04_Alarm_EQ)
    if CH_A04_Alarm_EQ == 1 and CH_A04_Alarm_EQ ~= tempBit_4 and CH_A04_Alarm_EQ ~= nil then
        message = 'DateTime : '..dtime..'\nCHILLER_A04 = ALARM'
-       getMessageUrl(message)
+       sendDiscordMessage(webhookUrl, message)
        print("Notification pushed of triggering alarm,"..CH_A04_Alarm_EQ)
 
    end
@@ -106,10 +111,12 @@ function discordbot.main()
 --   print("b=="..CH_A08_Alarm_EQ)
    if CH_A08_Alarm_EQ == 1 and CH_A08_Alarm_EQ ~= tempBit_5 and CH_A08_Alarm_EQ ~= nil then
        message = 'DateTime : '..dtime..'\nCHILLER_A08 = ALARM'
-       getMessageUrl(message)
+       sendDiscordMessage(webhookUrl, message)
        print("Notification pushed of triggering alarm,"..CH_A08_Alarm_EQ)
 
    end
    tempBit_5 = CH_A08_Alarm_EQ
-   
+    
 end
+
+    
