@@ -70,7 +70,7 @@ function discordbot.main()
   local CH_B06_Alarm_EQ = getAddrValue("@CH_B06_Alarm_EQ");
 --   print("b=="..CH_B06_Alarm_EQ)
    if CH_B06_Alarm_EQ == 1 and CH_B06_Alarm_EQ ~= tempBit_6 and CH_B06_Alarm_EQ ~= nil then
-       message = '\nDataTime : \n'..dtime..'\nCHILLER_B06 = ALARM'
+       message = 'DateTime : '..dtime..'\nCHILLER_B06 = ALARM'
       getMessageUrl(message)
       print("Notification pushed of triggering alarm,"..CH_B06_Alarm_EQ)
 
@@ -81,7 +81,7 @@ function discordbot.main()
   local CH_B05_Alarm_EQ = getAddrValue("@CH_B05_Alarm_EQ");
 --   print("b=="..CH_B05_Alarm_EQ)
   if CH_B05_Alarm_EQ == 1 and CH_B05_Alarm_EQ ~= tempBit_5 and CH_B05_Alarm_EQ ~= nil then
-      message = '\nDataTime : \n'..dtime..'\nCHILLER_B05 = ALARM'
+      message = 'DateTime : '..dtime..'\nCHILLER_B05 = ALARM'
       getMessageUrl(message)
       print("Notification pushed of triggering alarm,"..CH_B05_Alarm_EQ)
 
@@ -92,7 +92,7 @@ function discordbot.main()
   local CH_B03_Alarm_EQ = getAddrValue("@CH_B03_Alarm_EQ");
 --   print("b=="..CH_B03_Alarm_EQ)
   if CH_B03_Alarm_EQ == 1 and CH_B03_Alarm_EQ ~= tempBit_3 and CH_B03_Alarm_EQ ~= nil then
-      message = '\nDataTime : \n'..dtime..'\nCHILLER_B03 = ALARM'
+      message = 'DateTime : '..dtime..'\nCHILLER_B03 = ALARM'
       getMessageUrl(message)
       print("Notification pushed of triggering alarm,"..CH_B03_Alarm_EQ)
 
@@ -102,7 +102,7 @@ function discordbot.main()
   local CH_B04_Alarm_EQ = getAddrValue("@CH_B04_Alarm_EQ");
 --   print("b=="..CH_B04_Alarm_EQ)
   if CH_B04_Alarm_EQ == 1 and CH_B04_Alarm_EQ ~= tempBit_4 and CH_B04_Alarm_EQ ~= nil then
-      message = '\nDataTime : \n'..dtime..'\nCHILLER_B04 = ALARM'
+      message = 'DateTime : '..dtime..'\nCHILLER_B04 = ALARM'
       getMessageUrl(message)
       print("Notification pushed of triggering alarm,"..CH_B04_Alarm_EQ)
 
@@ -112,7 +112,7 @@ function discordbot.main()
   local CH_B01_Alarm_EQ = getAddrValue("@CH_B01_Alarm_EQ");
 --   print("b=="..CH_B01_Alarm_EQ)
   if CH_B01_Alarm_EQ == 1 and CH_B01_Alarm_EQ ~= tempBit_1 and CH_B01_Alarm_EQ ~= nil then
-      message = '\nDataTime : \n'..dtime..'\nCHILLER_B01 = ALARM'
+      message = 'DateTime : '..dtime..'\nCHILLER_B01 = ALARM'
       getMessageUrl(message)
       print("Notification pushed of triggering alarm,"..CH_B01_Alarm_EQ)
 
@@ -122,7 +122,7 @@ function discordbot.main()
   local CH_B02_Alarm_EQ = getAddrValue("@CH_B02_Alarm_EQ");
 --   print("b=="..CH_B02_Alarm_EQ)
   if CH_B02_Alarm_EQ == 1 and CH_B02_Alarm_EQ ~= tempBit_2 and CH_B02_Alarm_EQ ~= nil then
-      message = '\nDataTime : \n'..dtime..'\nCHILLER_B02 = ALARM'
+      message = 'DateTime : '..dtime..'\nCHILLER_B02 = ALARM'
       getMessageUrl(message)
       print("Notification pushed of triggering alarm,"..CH_B02_Alarm_EQ)
 
