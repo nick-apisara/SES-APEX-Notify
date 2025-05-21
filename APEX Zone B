@@ -11,39 +11,38 @@ local CH_B04_Alarm_EQ = 0
 local CH_B05_Alarm_EQ = 0
 local CH_B06_Alarm_EQ = 0
 
-local https = require("https")
-local json = require("json")
-local ltn12 = require("ltn12")
-
-function getHttpsUrl(url,header,reqbody)
-   local body = {}
-   local bodyJson = json.encode(body)
-   local result_table, code, headers, status = https.request{
-       method = "POST",
-       url = url,
-       source = ltn12.source.string(reqbody),
-       headers = header,
-       sink = ltn12.sink.table(body)
-   }
-   print("code:"..code)
-   if code~= 200 then
-       return
-   else
-       return body
-   end
-end
-
-function getMessageUrl(lineMessage)
-   local url = ""
-   local reqMess = "content="..lineMessage
-   local headers =
-                {
-                        ["Content-Type"] = "application/x-www-form-urlencoded",
-                        ["Content-Length"] = #reqMess
-                }
-   
-   print("Get the link:"..url)
-   getHttpsUrl(url, headers, reqMess)
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
 end
 
 local function getAddrValue(addr)
