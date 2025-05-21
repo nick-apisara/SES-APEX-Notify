@@ -56,13 +56,6 @@ function discordbot.main()
   
   local message = ''
   
---   if second == "00" or second == "05" or second == "10" or second == "15" then
---       message = 'DateTime : '..dtime..'\nCHILLER_A01 = TEST ALARM'
-        
---       print("message="..message)
---       sendDiscordMessage(webhookUrl, message)
-      
---   end
   --------------------------------------------CH_A01_Alarm----------------------------------------------
    local CH_A01_Alarm_EQ = addr_getbit("@CH_A01_Alarm_EQ");
 --   print("b=="..CH_A01_Alarm_EQ)
