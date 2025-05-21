@@ -1,0 +1,61 @@
+local tempBit_12 = 0
+local ALARM_ECO = 0 
+
+local https = require("https")
+local json = require("json")
+local ltn12 = require("ltn12")
+
+function getHttpsUrl(url,header,reqbody)
+   local body = {}
+   local bodyJson = json.encode(body)
+   local result_table, code, headers, status = https.request{
+       method = "POST",
+       url = url,
+       source = ltn12.source.string(reqbody),
+       headers = header,
+       sink = ltn12.sink.table(body)
+   }
+   print("code:"..code)
+   if code~= 200 then
+       return
+   else
+       return body
+   end
+end
+
+function getMessageUrl(lineMessage)
+   local url = ""
+   local reqMess = "content="..lineMessage
+   local headers =
+                {
+                        ["Content-Type"] = "application/x-www-form-urlencoded",
+                        ["Content-Length"] = #reqMess
+                }
+   
+   print("Get the link:"..url)
+   getHttpsUrl(url, headers, reqMess)
+end
+
+function discordbot.main()
+
+  year = os.date("%Y")
+  month = os.date("%m")
+  day = os.date("%d")
+  hour = os.date("%H")
+  minute = os.date("%M")
+  second = os.date("%S")
+  dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+  
+  local dtime2 = dtime
+  
+  local message = ''
+  ----------------------------------------ALARM_ECO--------------------------------------------------
+  local ALARM_ECO = addr_getbit("@ALARM_ECO");
+--   print("b=="..ALARM_ECO)
+   if ALARM_ECO == 1 and ALARM_ECO ~= tempBit_12 then
+       message = 'DateTime : '..dtime..'\nEconomizer = ALARM'
+       getMessageUrl(message)
+       print("Notification pushed of triggering alarm,"..ALARM_ECO)
+   end
+    tempBit_12 = ALARM_ECO
+end
