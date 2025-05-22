@@ -1,0 +1,233 @@
+local tempBit_1 = 0
+local tempBit_2 = 0 
+local tempBit_3 = 0  
+local tempBit_4 = 0
+local tempBit_5 = 0
+local tempBit_6 = 0
+local tempBit_7 = 0
+local tempBit_8 = 0
+
+local tempBit_9 = 0
+local tempBit_10 = 0
+local tempBit_11 = 0
+
+local ALARM_CHP_D01 = 0
+local ALARM_CHP_D02 = 0
+local ALARM_CHP_D03 = 0
+local ALARM_CDP_D01 = 0
+local ALARM_CDP_D02 = 0
+local ALARM_CDP_D03 = 0
+local ALARM_HWP_D01 = 0
+local ALARM_HWP_D02 = 0
+
+local Alarm_CH_D01 = 0
+local Alarm_CH_D02 = 0
+local Alarm_CH_D03 = 0
+
+local function getAddrValue(addr)
+    local value = addr_getbit(addr)
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
+end
+
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
+end
+
+function line.main()
+    year = os.date("%Y")
+    month = os.date("%m")
+    day = os.date("%d")
+    hour = os.date("%H")
+    minute = os.date("%M")
+    second = os.date("%S")
+    dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+    
+    local message = ''
+    
+    local Alarm_CH_D01 = getAddrValue("@CH_D01_Alarm");
+    if Alarm_CH_D01 == 1 and Alarm_CH_D01 ~= tempBit_9 then
+       message = 'DateTime : \n'..dtime..'\nCHILLER_DO1 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..Alarm_CH_D01)
+
+    end
+    tempBit_9 = Alarm_CH_D01
+    
+   local Alarm_CH_D02 = getAddrValue("@CH_D02_Alarm");
+   if Alarm_CH_D02 == 1 and Alarm_CH_D02 ~= tempBit_10 then
+       message = 'DateTime : \n'..dtime..'\nCHILLER_DO2 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..Alarm_CH_D02)
+
+   end
+   tempBit_10 = Alarm_CH_D02
+
+   local Alarm_CH_D03 = getAddrValue("@CH_D03_Alarm");
+   if Alarm_CH_D03 == 1 and Alarm_CH_D03 ~= tempBit_11 then
+       message = 'DateTime : \n'..dtime..'\nCHILLER_DO1 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..Alarm_CH_D03)
+
+   end
+   tempBit_11 = Alarm_CH_D03
+----------------------------------------ALARM_CHP_D01--------------------------------------------------
+   local ALARM_CHP_D01 = getAddrValue("@ALARM_CHP_D01");
+--   print("b=="..ALARM_CHP_D01)
+   if ALARM_CHP_D01 == 1 and ALARM_CHP_D01 ~= tempBit_1 then
+       message = 'DateTime : \n'..dtime..'\nPump_CHP_D01 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_CHP_D01)
+
+   end
+   tempBit_1 = ALARM_CHP_D01
+----------------------------------------ALARM_CHP_D02--------------------------------------------------
+   local ALARM_CHP_D02 = getAddrValue("@ALARM_CHP_D02");
+   if ALARM_CHP_D02 == 1 and ALARM_CHP_D02 ~= tempBit_2 then
+       message = 'DateTime : \n'..dtime..'\nPump_CHP_D02 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_CHP_D02)
+
+   end
+   tempBit_2 = ALARM_CHP_D02
+---------------------------------------------ALARM_CHP_D03---------------------------------------------   
+   local ALARM_CHP_D03 = getAddrValue("@ALARM_CHP_D03");
+   if ALARM_CHP_D03 == 1 and ALARM_CHP_D03 ~= tempBit_3 then
+       message = 'DateTime : \n'..dtime..'\nPump_CHP_D03 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_CHP_D03)
+
+   end
+   tempBit_3 = ALARM_CHP_D03
+   
+   ------------------------------------------ALARM_CDP_D01------------------------------------------------
+   local ALARM_CDP_D01 = getAddrValue("@ALARM_CDP_D01");
+
+   if ALARM_CDP_D01 == 1 and ALARM_CDP_D01 ~= tempBit_4 then
+       message = 'DateTime : \n'..dtime..'\nPump_CDP_D01 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_CDP_D01)
+
+   end
+   tempBit_4 = ALARM_CDP_D01
+-------------------------------------------ALARM_CDP_D02-----------------------------------------------
+   local ALARM_CDP_D02 = getAddrValue("@ALARM_CDP_D02");
+
+   if ALARM_CDP_D02 == 1 and ALARM_CDP_D02 ~= tempBit_5 then
+       message = 'DateTime : \n'..dtime..'\nPump_CDP_D02 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_CDP_D02)
+
+   end
+   tempBit_5 = ALARM_CDP_D02
+-------------------------------------------ALARM_CDP_D03-----------------------------------------------
+   local ALARM_CDP_D03 = getAddrValue("@ALARM_CDP_D03");
+
+   if ALARM_CDP_D03 == 1 and ALARM_CDP_D03 ~= tempBit_6 then
+       message = 'DateTime : \n'..dtime..'\nPump_CDP_D03 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_CDP_D03)
+
+   end
+   tempBit_6 = ALARM_CDP_D03
+----------------------------------------------ALARM_HWP_D01--------------------------------------------
+   local ALARM_HWP_D01 = getAddrValue("@ALARM_HWP_D01");
+
+   if ALARM_HWP_D01 == 1 and ALARM_HWP_D01 ~= tempBit_7 then
+       message = 'DateTime : \n'..dtime..'\nPump_HWP_D01 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_HWP_D01)
+
+   end
+   tempBit_7 = ALARM_HWP_D01
+-------------------------------------------ALARM_HWP_D02-----------------------------------------------
+   local ALARM_HWP_D02 = getAddrValue("@ALARM_HWP_D02");
+
+   if ALARM_HWP_D02 == 1 and ALARM_HWP_D02 ~= tempBit_8 then
+       message = 'DateTime : \n'..dtime..'\nPump_HWP_D02 = ALARM'
+       sendDiscordMessage(webhookUrl, message)
+       print("Notification pushed of triggering alarm,"..ALARM_HWP_D02)
+
+   end
+   tempBit_8 = ALARM_HWP_D02
+
+   testmsg(1)
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+    if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_DO1 = '..Alarm_CH_D01
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_DO2 = '..Alarm_CH_D02
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_DO3 = '..Alarm_CH_D03
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CHP_D01 = '..ALARM_CHP_D01
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CHP_D02 = '..ALARM_CHP_D02
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CHP_D03 = '..ALARM_CHP_D03
+          sendDiscordMessage(webhookUrl, msg)
+            
+          msg = 'Pump_CDP_D01 = '..ALARM_CDP_D01
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_CDP_D02 = '..ALARM_CDP_D02
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CDP_D03 = '..ALARM_CDP_D03
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_HWP_D01 = '..ALARM_HWP_D01
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_HWP_D02 = '..ALARM_HWP_D02..'\n--------end loop'
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+       end
+end
+
+
+
