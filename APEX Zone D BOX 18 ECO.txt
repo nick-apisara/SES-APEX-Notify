@@ -59,4 +59,21 @@ function discordbot.main()
     end
     tempBit_12 = ALARM_ECO
     
+    testmsg(1)
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+   if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Economizer = '..ALARM_ECO..'\n--------end loop'
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+    end
 end
