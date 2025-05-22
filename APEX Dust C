@@ -128,8 +128,8 @@ function discordbot.main()
     ------------
  if ddtime then
     message = '\nDataTime : \n'..dtime..'\n************************** \nALARM Diff.Pressure OVER\n**************************'
-    getMessageUrl(message)
- end
+    sendDiscordMessage(webhookUrl, message)
+end
  
  ----------------------------------------ALARM_Diff_01--------------------------------------------------
   local ALARM_Diff_01 = addr_getbit("@ALARM_Diff_01");
@@ -139,7 +139,7 @@ function discordbot.main()
     if ALARM_Diff_01 == 1 and ddtime then
       message_Diff_01 = '\n'..Diff_01..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_01)
+    sendDiscordMessage(webhookUrl, message_Diff_01)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_01)
     end
     tempBit_1 = ALARM_Diff_01
@@ -152,7 +152,7 @@ function discordbot.main()
     if ALARM_Diff_02 == 1 and ddtime then
       message_Diff_02 = '\n'..Diff_02..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_02)
+    sendDiscordMessage(webhookUrl, message_Diff_02)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_02)
     end
     tempBit_2 = ALARM_Diff_02
@@ -165,7 +165,7 @@ function discordbot.main()
     if ALARM_Diff_03 == 1 and ddtime then
       message_Diff_03 = '\n'..Diff_03..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_03)
+    sendDiscordMessage(webhookUrl, message_Diff_03)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_03)
     end
     tempBit_3 = ALARM_Diff_03
@@ -178,7 +178,7 @@ function discordbot.main()
     if ALARM_Diff_04 == 1 and ddtime then
       message_Diff_04 = '\n'..Diff_04..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_04)
+    sendDiscordMessage(webhookUrl, message_Diff_04)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_04)
     end
     tempBit_4 = ALARM_Diff_04
@@ -191,7 +191,7 @@ function discordbot.main()
     if ALARM_Diff_05 == 1 and ddtime then
       message_Diff_05 = '\n'..Diff_05..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_05)
+    sendDiscordMessage(webhookUrl, message_Diff_05)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_05)
     end
     tempBit_5 = ALARM_Diff_05
@@ -204,7 +204,7 @@ function discordbot.main()
     if ALARM_Diff_06 == 1 and ddtime then
       message_Diff_06 = '\n'..Diff_06..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_06)
+    sendDiscordMessage(webhookUrl, message_Diff_06)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_06)
     end
     tempBit_6 = ALARM_Diff_06
@@ -217,7 +217,7 @@ function discordbot.main()
     if ALARM_Diff_07 == 1 and ddtime then
       message_Diff_07 = '\n'..Diff_07..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_07)
+    sendDiscordMessage(webhookUrl, message_Diff_07)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_07)
     end
     tempBit_7 = ALARM_Diff_07
@@ -230,7 +230,7 @@ function discordbot.main()
     if ALARM_Diff_08 == 1 and ddtime then
       message_Diff_08 = '\n'..Diff_08..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_08)
+    sendDiscordMessage(webhookUrl, message_Diff_08)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_08)
     end
     tempBit_8 = ALARM_Diff_08
@@ -243,7 +243,7 @@ function discordbot.main()
     if ALARM_Diff_09 == 1 and ddtime then
       message_Diff_09 = '\n'..Diff_09..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_09)
+    sendDiscordMessage(webhookUrl, message_Diff_09)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_09)
     end
     tempBit_9 = ALARM_Diff_09
@@ -256,7 +256,7 @@ function discordbot.main()
     if ALARM_Diff_10 == 1 and ddtime then
       message_Diff_10 = '\n'..Diff_10..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_10)
+    sendDiscordMessage(webhookUrl, message_Diff_10)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_10)
     end
     tempBit_10 = ALARM_Diff_10
@@ -269,7 +269,7 @@ function discordbot.main()
     if ALARM_Diff_11 == 1 and ddtime then
       message_Diff_11 = '\n'..Diff_11..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_11)
+    sendDiscordMessage(webhookUrl, message_Diff_11)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_11)
     end
     tempBit_11 = ALARM_Diff_11
@@ -282,7 +282,7 @@ function discordbot.main()
     if ALARM_Diff_12 == 1 and ddtime then
       message_Diff_12 = '\n'..Diff_12..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_12)
+    sendDiscordMessage(webhookUrl, message_Diff_12)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_12)
     end
     tempBit_12 = ALARM_Diff_12
@@ -295,7 +295,7 @@ function discordbot.main()
     if ALARM_Diff_13 == 1 and ddtime then
       message_Diff_13 = '\n'..Diff_13..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_13)
+    sendDiscordMessage(webhookUrl, message_Diff_13)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_13)
     end
     tempBit_13 = ALARM_Diff_13
@@ -308,7 +308,7 @@ function discordbot.main()
     if ALARM_Diff_14 == 1 and ddtime then
       message_Diff_14 = '\n'..Diff_14..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_14)
+    sendDiscordMessage(webhookUrl, message_Diff_14)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_14)
     end
     tempBit_14 = ALARM_Diff_14
@@ -321,7 +321,7 @@ function discordbot.main()
     if ALARM_Diff_15 == 1 and ddtime then
       message_Diff_15 = '\n'..Diff_15..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_15)
+    sendDiscordMessage(webhookUrl, message_Diff_15)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_15)
     end
     tempBit_15 = ALARM_Diff_15
@@ -334,7 +334,7 @@ function discordbot.main()
     if ALARM_Diff_16 == 1 and ddtime then
       message_Diff_16 = '\n'..Diff_16..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_16)
+    sendDiscordMessage(webhookUrl, message_Diff_16)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_16)
     end
     tempBit_16 = ALARM_Diff_16
@@ -347,7 +347,7 @@ function discordbot.main()
     if ALARM_Diff_17 == 1 and ddtime then
       message_Diff_17 = '\n'..Diff_17..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_17)
+    sendDiscordMessage(webhookUrl, message_Diff_17)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_17)
     end
     tempBit_17 = ALARM_Diff_17
@@ -360,7 +360,7 @@ function discordbot.main()
     if ALARM_Diff_18 == 1 and ddtime then
       message_Diff_18 = '\n'..Diff_18..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_18)
+    sendDiscordMessage(webhookUrl, message_Diff_18)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_18)
     end
     tempBit_18 = ALARM_Diff_18
@@ -373,7 +373,7 @@ function discordbot.main()
     if ALARM_Diff_19 == 1 and ddtime then
       message_Diff_19 = '\n'..Diff_19..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_19)
+    sendDiscordMessage(webhookUrl, message_Diff_19)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_19)
     end
     tempBit_19 = ALARM_Diff_19
@@ -386,7 +386,7 @@ function discordbot.main()
     if ALARM_Diff_21 == 1 and ddtime then
       message_Diff_21 = '\n'..Diff_21..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_21)
+    sendDiscordMessage(webhookUrl, message_Diff_21)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_21)
     end
     tempBit_21 = ALARM_Diff_21
@@ -399,7 +399,7 @@ function discordbot.main()
     if ALARM_Diff_23 == 1 and ddtime then
       message_Diff_23 = '\n'..Diff_23..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_23)
+    sendDiscordMessage(webhookUrl, message_Diff_23)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_23)
     end
     tempBit_23 = ALARM_Diff_23
@@ -411,7 +411,7 @@ function discordbot.main()
     if ALARM_Diff_25 == 1 and ddtime then
       message_Diff_25 = '\n'..Diff_25..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_25)
+    sendDiscordMessage(webhookUrl, message_Diff_25)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_25)
      end
     tempBit_25 = ALARM_Diff_25
@@ -423,7 +423,7 @@ function discordbot.main()
     if ALARM_Diff_26 == 1 and ddtime then
       message_Diff_26 = '\n'..Diff_26..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_26)
+    sendDiscordMessage(webhookUrl, message_Diff_26)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_26)
      end
     tempBit_26 = ALARM_Diff_26
@@ -435,7 +435,7 @@ function discordbot.main()
     if ALARM_Diff_27 == 1 and ddtime then
       message_Diff_27 = '\n'..Diff_27..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_27)
+    sendDiscordMessage(webhookUrl, message_Diff_27)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_27)
      end
     tempBit_27 = ALARM_Diff_27
@@ -447,7 +447,7 @@ function discordbot.main()
     if ALARM_Diff_28 == 1 and ddtime then
       message_Diff_28 = '\n'..Diff_28..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_28)
+    sendDiscordMessage(webhookUrl, message_Diff_28)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_28)
     end
     tempBit_28 = ALARM_Diff_28
@@ -460,7 +460,7 @@ function discordbot.main()
     if ALARM_Diff_30 == 1 and ddtime then
       message_Diff_30 = '\n'..Diff_30..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_30)
+    sendDiscordMessage(webhookUrl, message_Diff_30)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_30)
     end
     tempBit_30 = ALARM_Diff_30
@@ -473,7 +473,7 @@ function discordbot.main()
     if ALARM_Diff_32 == 1 and ddtime then
       message_Diff_32 = '\n'..Diff_32..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_32)
+    sendDiscordMessage(webhookUrl, message_Diff_32)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_32)
     end
     tempBit_32 = ALARM_Diff_32
@@ -485,7 +485,7 @@ function discordbot.main()
     if ALARM_Diff_33 == 1 and ddtime then
       message_Diff_33 = '\n'..Diff_33..
                         '\nOver 250 mmAq'
-      getMessageUrl(message_Diff_33)
+    sendDiscordMessage(webhookUrl, message_Diff_33)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_33)
     end
     tempBit_33 = ALARM_Diff_33
@@ -493,7 +493,7 @@ function discordbot.main()
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     if ddtime_0 then
         message = '\nDataTime : \n'..dtime..'\n************************** \nDiff.Pressure = 0\nPlease Chack Sensor\nOVER = Over 700 mmAq\nER 2 = Over Range\n**************************'
-        getMessageUrl(message)
+    sendDiscordMessage(webhookUrl, message)
     end
 ----------------------------------------ALARM_Diff_01--------------------------------------------------
  local Diff_01 = addr_getword("@Diff_01");
@@ -501,7 +501,7 @@ function discordbot.main()
   print("b=="..Diff_01)
     if Diff_01 == 0 and ddtime_0 then
       message_Diff_01 = '\tDiff_01 = 0 '
-      getMessageUrl(message_Diff_01)
+    sendDiscordMessage(webhookUrl, message_Diff_01)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_01)
     end
     tempBit_1 = ALARM_Diff_01
@@ -511,7 +511,7 @@ function discordbot.main()
   print("b=="..Diff_02)
     if Diff_02 == 0 and ddtime_0 then
       message_Diff_02 = '\tDiff_02 = 0 '
-      getMessageUrl(message_Diff_02)
+    sendDiscordMessage(webhookUrl, message_Diff_02)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_02)
     end
     tempBit_2 = ALARM_Diff_02
@@ -521,7 +521,7 @@ function discordbot.main()
   print("b=="..Diff_03)
     if Diff_03 == 0 and ddtime_0 then
       message_Diff_03 = '\tDiff_03 = 0 '
-      getMessageUrl(message_Diff_03)
+    sendDiscordMessage(webhookUrl, message_Diff_03)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_03)
     end
     tempBit_3 = ALARM_Diff_03
@@ -531,7 +531,7 @@ function discordbot.main()
   print("b=="..Diff_04)
     if Diff_04 == 0 and ddtime_0 then
       message_Diff_04 = '\tDiff_04 = 0 '
-      getMessageUrl(message_Diff_04)
+    sendDiscordMessage(webhookUrl, message_Diff_04)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_04)
     end
     tempBit_4 = ALARM_Diff_04
@@ -541,7 +541,7 @@ function discordbot.main()
   print("b=="..Diff_05)
     if Diff_05 == 0 and ddtime_0 then
       message_Diff_05 = '\tDiff_05 = 0 '
-      getMessageUrl(message_Diff_05)
+    sendDiscordMessage(webhookUrl, message_Diff_05)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_05)
     end
     tempBit_5 = ALARM_Diff_05
@@ -551,7 +551,7 @@ function discordbot.main()
   print("b=="..Diff_06)
     if Diff_06 == 0 and ddtime_0 then
       message_Diff_06 = '\tDiff_06 = 0 '
-      getMessageUrl(message_Diff_06)
+    sendDiscordMessage(webhookUrl, message_Diff_06)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_06)
     end
     tempBit_6 = ALARM_Diff_06
@@ -561,7 +561,7 @@ function discordbot.main()
   print("b=="..Diff_07)
     if Diff_07 == 0 and ddtime_0 then
       message_Diff_07 = '\tDiff_07 = 0 '
-      getMessageUrl(message_Diff_07)
+    sendDiscordMessage(webhookUrl, message_Diff_07)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_07)
     end
     tempBit_7 = ALARM_Diff_07
@@ -571,7 +571,7 @@ function discordbot.main()
   print("b=="..Diff_08)
     if Diff_08 == 0 and ddtime_0 then
       message_Diff_08 = '\tDiff_08 = 0 '
-      getMessageUrl(message_Diff_08)
+    sendDiscordMessage(webhookUrl, message_Diff_08)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_08)
     end
     tempBit_8 = ALARM_Diff_08
@@ -581,7 +581,7 @@ function discordbot.main()
   print("b=="..Diff_09)
     if Diff_09 == 0 and ddtime_0 then
       message_Diff_09 = '\tDiff_09 = 0 '
-      getMessageUrl(message_Diff_09)
+    sendDiscordMessage(webhookUrl, message_Diff_09)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_09)
     end
     tempBit_9 = ALARM_Diff_09
@@ -591,7 +591,7 @@ function discordbot.main()
   print("b=="..Diff_10)
     if Diff_10 == 0 and ddtime_0 then
       message_Diff_10 = '\tDiff_10 = 0 '
-      getMessageUrl(message_Diff_10)
+    sendDiscordMessage(webhookUrl, message_Diff_10)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_10)
     end
     tempBit_10 = ALARM_Diff_10
@@ -601,7 +601,7 @@ function discordbot.main()
   print("b=="..Diff_11)
     if Diff_11 == 0 and ddtime_0 then
       message_Diff_11 = '\tDiff_11 = 0 '
-      getMessageUrl(message_Diff_11)
+    sendDiscordMessage(webhookUrl, message_Diff_11)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_11)
     end
     tempBit_11 = ALARM_Diff_11
@@ -611,7 +611,7 @@ function discordbot.main()
   print("b=="..Diff_12)
     if Diff_12 == 0 and ddtime_0 then
       message_Diff_12 = '\tDiff_12 = 0 '
-      getMessageUrl(message_Diff_12)
+    sendDiscordMessage(webhookUrl, message_Diff_12)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_12)
     end
     tempBit_12 = ALARM_Diff_12
@@ -621,7 +621,7 @@ function discordbot.main()
   print("b=="..Diff_13)
     if Diff_13 == 0 and ddtime_0 then
       message_Diff_13 = '\tDiff_13 = 0 '
-      getMessageUrl(message_Diff_13)
+    sendDiscordMessage(webhookUrl, message_Diff_13)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_13)
     end
     tempBit_13 = ALARM_Diff_13
@@ -631,7 +631,7 @@ function discordbot.main()
   print("b=="..Diff_14)
     if Diff_14 == 0 and ddtime_0 then
       message_Diff_14 = '\tDiff_14 = 0 '
-      getMessageUrl(message_Diff_14)
+    sendDiscordMessage(webhookUrl, message_Diff_14)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_14)
     end
     tempBit_14 = ALARM_Diff_14
@@ -641,7 +641,7 @@ function discordbot.main()
   print("b=="..Diff_15)
     if Diff_15 == 0 and ddtime_0 then
       message_Diff_15 = '\tDiff_15 = 0 '
-      getMessageUrl(message_Diff_15)
+    sendDiscordMessage(webhookUrl, message_Diff_15)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_15)
     end
     tempBit_15 = ALARM_Diff_15
@@ -651,7 +651,7 @@ function discordbot.main()
   print("b=="..Diff_16)
     if Diff_16 == 0 and ddtime_0 then
       message_Diff_16 = '\tDiff_16 = 0 '
-      getMessageUrl(message_Diff_16)
+    sendDiscordMessage(webhookUrl, message_Diff_16)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_16)
     end
     tempBit_16 = ALARM_Diff_16
@@ -661,7 +661,7 @@ function discordbot.main()
   print("b=="..Diff_17)
     if Diff_17 == 0 and ddtime_0 then
       message_Diff_17 = '\tDiff_17 = 0 '
-      getMessageUrl(message_Diff_17)
+    sendDiscordMessage(webhookUrl, message_Diff_17)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_17)
     end
     tempBit_17 = ALARM_Diff_17
@@ -671,7 +671,7 @@ function discordbot.main()
   print("b=="..Diff_18)
     if Diff_18 == 0 and ddtime_0 then
       message_Diff_18 = '\tDiff_18 = 0 '
-      getMessageUrl(message_Diff_18)
+    sendDiscordMessage(webhookUrl, message_Diff_18)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_18)
     end
     tempBit_18 = ALARM_Diff_18
@@ -681,7 +681,7 @@ function discordbot.main()
   print("b=="..Diff_19)
     if Diff_19 == 0 and ddtime_0 then
       message_Diff_19 = '\tDiff_19 = 0 '
-      getMessageUrl(message_Diff_19)
+    sendDiscordMessage(webhookUrl, message_Diff_19)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_19)
     end
     tempBit_19 = ALARM_Diff_19
@@ -691,7 +691,7 @@ function discordbot.main()
   print("b=="..Diff_21)
     if Diff_21 == 0 and ddtime_0 then
       message_Diff_21 = '\tDiff_21 = 0 '
-      getMessageUrl(message_Diff_21)
+    sendDiscordMessage(webhookUrl, message_Diff_21)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_21)
     end
     tempBit_21 = ALARM_Diff_21
@@ -701,7 +701,7 @@ function discordbot.main()
   print("b=="..Diff_23)
     if Diff_23 == 0 and ddtime_0 then
       message_Diff_23 = '\tDiff_23 = 0 '
-      getMessageUrl(message_Diff_23)
+    sendDiscordMessage(webhookUrl, message_Diff_23)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_23)
     end
     tempBit_23 = ALARM_Diff_23
@@ -711,7 +711,7 @@ function discordbot.main()
   print("b=="..Diff_24)
     if Diff_24 == 0 and ddtime_0 then
       message_Diff_24 = '\tDiff_24 = 0 '
-      getMessageUrl(message_Diff_24)
+    sendDiscordMessage(webhookUrl, message_Diff_24)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_24)
     end
     tempBit_24 = ALARM_Diff_24
@@ -721,7 +721,7 @@ function discordbot.main()
   print("b=="..Diff_25)
     if Diff_25 == 0 and ddtime_0 then
       message_Diff_25 = '\tDiff_25 = 0 '
-      getMessageUrl(message_Diff_25)
+    sendDiscordMessage(webhookUrl, message_Diff_25)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_25)
     end
     tempBit_25 = ALARM_Diff_25
@@ -731,7 +731,7 @@ function discordbot.main()
   print("b=="..Diff_26)
     if Diff_26 == 0 and ddtime_0 then
       message_Diff_26 = '\tDiff_26 = 0 '
-      getMessageUrl(message_Diff_26)
+    sendDiscordMessage(webhookUrl, message_Diff_26)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_26)
     end
     tempBit_26 = ALARM_Diff_26
@@ -741,7 +741,7 @@ function discordbot.main()
   print("b=="..Diff_27)
     if Diff_27 == 0 and ddtime_0 then
       message_Diff_27 = '\tDiff_27 = 0 '
-      getMessageUrl(message_Diff_27)
+    sendDiscordMessage(webhookUrl, message_Diff_27)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_27)
     end
     tempBit_27 = ALARM_Diff_27
@@ -752,7 +752,7 @@ function discordbot.main()
   print("b=="..Diff_32)
     if Diff_32 == 0 and ddtime_0 then
       message_Diff_32 = '\tDiff_32 = 0 '
-      getMessageUrl(message_Diff_32)
+    sendDiscordMessage(webhookUrl, message_Diff_32)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_32)
     end
     tempBit_32 = ALARM_Diff_32
@@ -762,7 +762,7 @@ function discordbot.main()
   print("b=="..Diff_33)
     if Diff_33 == 0 and ddtime_0 then
       message_Diff_33 = '\tDiff_33 = 0 '
-      getMessageUrl(message_Diff_33)
+    sendDiscordMessage(webhookUrl, message_Diff_33)
       print("Notification pushed of triggering alarm,"..ALARM_Diff_33)
     end
     tempBit_33 = ALARM_Diff_33
