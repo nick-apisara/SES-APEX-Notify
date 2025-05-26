@@ -1,0 +1,181 @@
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
+end
+
+function round(x)
+  return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
+end
+
+function check_status(hmi)
+    if hmi == 1 or hmi == 2 or hmi == 3 then
+        return 0
+    elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
+        return 1
+    end
+end
+
+local HMI_DUS_07=0
+local HMI_DUS_08=0
+local HMI_DUS_09=0
+local HMI_DUS_10=0
+local HMI_DUS_11=0
+local HMI_DUS_12=0
+local HMI_DUS_13=0
+
+local HMI_DUS_07bak=0
+local HMI_DUS_08bak=0
+local HMI_DUS_09bak=0
+local HMI_DUS_10bak=0
+local HMI_DUS_11bak=0
+local HMI_DUS_12bak=0
+local HMI_DUS_13bak=0
+
+function discordbot.main()
+    
+  year = os.date("%Y")
+  month = os.date("%m")
+  day = os.date("%d")
+  hour = os.date("%H")
+  minute = os.date("%M")
+  second = os.date("%S")
+  dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+  
+  local dtime2 = dtime
+  
+  HMI_DUS_07 = addr_getint("@HMI_DUS_07_status")
+  HMI_DUS_08 = addr_getint("@HMI_DUS_08_status")
+  HMI_DUS_09 = addr_getint("@HMI_DUS_09_status")
+  HMI_DUS_10 = addr_getint("@HMI_DUS_10_status")
+  HMI_DUS_11 = addr_getint("@HMI_DUS_11_status")
+  HMI_DUS_12 = addr_getint("@HMI_DUS_12_status")
+  HMI_DUS_13 = addr_getint("@HMI_DUS_13_status")
+  
+------------ALARM_Dust NO.07-----------
+  local msg_dust_07 = ''
+  if HMI_DUS_07bak ~= HMI_DUS_07 and check_status(HMI_DUS_07) == 1 then 
+	msg_dust_07 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.07 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_07)
+	
+	HMI_DUS_07bak = round(HMI_DUS_07)
+
+  end
+
+------------ALARM_Dust NO.08-----------
+  local msg_dust_08 = ''
+  if HMI_DUS_08bak ~= HMI_DUS_08 and check_status(HMI_DUS_08) == 1 then 
+	msg_dust_08 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.08 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_07)
+	
+	HMI_DUS_08bak = round(HMI_DUS_08)
+
+  end
+  
+------------ALARM_Dust NO.09-----------
+  local msg_dust_09 = ''
+  if HMI_DUS_09bak ~= HMI_DUS_09 and check_status(HMI_DUS_09) == 1 then 
+	msg_dust_09 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.09 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_09)
+	
+	HMI_DUS_09bak = round(HMI_DUS_09)
+
+  end
+------------ALARM_Dust NO.10-----------
+  local msg_dust_10 = ''
+  if HMI_DUS_10bak ~= HMI_DUS_10 and check_status(HMI_DUS_10) == 1 then 
+	msg_dust_10 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.10 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_10)
+	
+	HMI_DUS_10bak = round(HMI_DUS_10)
+
+  end
+------------ALARM_Dust NO.11-----------
+  local msg_dust_11 = ''
+  if HMI_DUS_11bak ~= HMI_DUS_11 and check_status(HMI_DUS_11) == 1 then 
+	msg_dust_11 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.11 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_11)
+	
+	HMI_DUS_11bak = round(HMI_DUS_11)
+
+  end
+  ------------ALARM_Dust NO.12-----------
+  local msg_dust_12 = ''
+  if HMI_DUS_12bak ~= HMI_DUS_12 and check_status(HMI_DUS_12) == 1 then 
+	msg_dust_12 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.12 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_12)
+	
+	HMI_DUS_12bak = round(HMI_DUS_12)
+
+  end
+  ------------ALARM_Dust NO.13-----------
+  local msg_dust_13 = ''
+  if HMI_DUS_13bak ~= HMI_DUS_13 and check_status(HMI_DUS_13) == 1 then 
+	msg_dust_13 = 'Dust 2 Zone B \nDateTime :'..dtime2..'\nDust No.13 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_13)
+	
+	HMI_DUS_13bak = round(HMI_DUS_13)
+
+  end
+
+  testmsg(0)
+end
+
+function testmsg(testtrig)
+   looptest = testtrig
+   if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.07 = '..HMI_DUS_07..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.08 = '..HMI_DUS_08..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.09 = '..HMI_DUS_09..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.10 = '..HMI_DUS_10..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.11 = '..HMI_DUS_11..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.12 = '..HMI_DUS_12..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.13 = '..HMI_DUS_13..'\n--------end loop'
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+    end
+end
