@@ -1,0 +1,96 @@
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
+end
+
+function check_status(hmi)
+    if hmi == 1 or hmi == 2 or hmi == 3 then
+        return 0
+    elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
+        return 1
+    end
+end
+
+local function getintfloat(addr)
+    local value = addr_getint(addr,0,2)*0.00001
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
+end
+
+function round(x)
+  return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
+end
+
+local DPM_AIR_17=0
+local DPM_AIR_17bak
+
+function discordbot.main()
+  year = os.date("%Y")
+  month = os.date("%m")
+  day = os.date("%d")
+  hour = os.date("%H")
+  minute = os.date("%M")
+  second = os.date("%S")
+  dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+  
+  local dtime2 = dtime
+  
+  DPM_AIR_17 = getintfloat("@Power_total_DPM_AIR_17")
+--   print("DPM_AIR_17=="..DPM_AIR_17)
+
+  ------------ALARM_Dust NO.17-----------
+  local msg_air_17 = ''
+  if DPM_AIR_17bak ~= round(DPM_AIR_17) and round(DPM_AIR_17) < 1 then 
+	msg_air_17 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'\nDust No.17 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_air_17)
+	
+	DPM_AIR_17bak = round(DPM_AIR_17)
+  end 
+   
+    -- testmsg(1)
+    
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+   if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.17 = '..DPM_AIR_17..'\n--------end loop'
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+    end
+end
