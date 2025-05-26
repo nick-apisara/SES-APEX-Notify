@@ -39,7 +39,7 @@ end
 function check_status(hmi)
     if hmi == 1 or hmi == 2 or hmi == 3 then
         return 0
-    else
+    elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
         return 1
     end
 end
@@ -65,12 +65,13 @@ function discordbot.main()
   HMI_DUS_28 = addr_getint("@HMI_DUS_28_status")
   HMI_DUS_30 = addr_getint("@HMI_DUS_30_status")
   HMI_DUS_32 = addr_getint("@HMI_DUS_32_status")
---   print("HMI_DUS_28=="..HMI_DUS_28)
+  
+--   print("HMI_DUS_32=="..HMI_DUS_32)
 
---   local result28 = check_status(HMI_DUS_28)
---      print("result28=="..result28)
+--   local result32 = check_status(HMI_DUS_32)
+--      print("result32=="..result32)
      
-------------ALARM_Dust NO.28-----------
+-- ------------ALARM_Dust NO.28-----------
   local msg_dust_28 = ''
   if HMI_DUS_28bak ~= HMI_DUS_28 and check_status(HMI_DUS_28) == 1 then 
 	msg_dust_28 = 'Dust 1 Zone WH \nDateTime :'..dtime2..'\nDust No.28 = ALARM'
