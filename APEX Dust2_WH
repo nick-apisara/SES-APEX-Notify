@@ -1,4 +1,3 @@
-
 function sendDiscordMessage(webhookUrl, message)
     if message == "" then
         return false
@@ -52,21 +51,25 @@ function discordbot.main()
   local dtime2 = dtime
   
 ------------ALARM_Dust NO.29-----------
-  local DPM_WH29 = addr_getfloat("@Power_total_DPM_WH29")
+  local DPM_WH29 = addr_getint("@Power_total_DPM_WH29",0,2)*0.00001
   local msg_dust_29 = ''
+--   print('DPM_WH29=='..DPM_WH29)
+  
   if DPM_WH29bak ~= round(DPM_WH29) and round(DPM_WH29) < 1 then 
-	msg_dust_29 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'Dust No.29 = ALARM'
-	DPM_WH29bak = round(DPM_WH29)
-	
+	msg_dust_29 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'\nDust No.29 = ALARM'
 	sendDiscordMessage(webhookUrl, msg_dust_29)
+	
+	DPM_WH29bak = round(DPM_WH29)
+
   end
 ------------ALARM_Dust NO.31-----------
-  local DPM_WH31 = addr_getfloat("@Power_total_DPM_WH31")
+  local DPM_WH31 = addr_getint("@Power_total_DPM_WH31",0,2)*0.00001
   local msg_dust_31 = ''
+--   print('DPM_WH31=='..DPM_WH31)
   if DPM_WH31bak ~= round(DPM_WH31) and round(DPM_WH31) < 1 then 
-	msg_dust_31 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'Dust No.31 = ALARM'
-	DPM_WH31bak = round(DPM_WH31)
-	
+	msg_dust_31 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'\nDust No.31 = ALARM'
 	sendDiscordMessage(webhookUrl, msg_dust_31)
+	
+	DPM_WH31bak = round(DPM_WH31)
   end
 end
