@@ -63,6 +63,9 @@ local	ALARM_Diff_31=	0
 local	ALARM_Diff_32=	0
 local	ALARM_Diff_33=	0
 
+local HMI_DUS_33=0
+local HMI_DUS_33bak
+
 function sendDiscordMessage(webhookUrl, message)
     if message == "" then
         return false
@@ -102,11 +105,26 @@ local function getAddrValue(addr)
     return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
 end
 
+function check_status(hmi)
+    if hmi == 1 or hmi == 2 or hmi == 3 then
+        return 0
+    elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
+        return 1
+    end
+end
+
+local function getint(addr)
+    local value = addr_getint(addr)
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
+end
+
+
 local temptime = "09"
 local ddtime = 0
 local ddtime_0 = 0
 
 function discordbot.main()
+    
   year = os.date("%Y")
   month = os.date("%m")
   day = os.date("%d")
@@ -122,9 +140,9 @@ function discordbot.main()
   if hour == "10" and temptime ~= hour then 
       ddtime = 1
       
-      temptime = hour
   end
-  
+        temptime = hour
+
 --   print("temptime == "..temptime)
 --   print("ddtime == "..ddtime)
 
@@ -801,5 +819,33 @@ end
     
     if ddtime_0 == 1 then ddtime_0 = 0 end
     
-    
+  HMI_DUS_33 = getint("@HMI_DUS_status_33")
+  
+------------ALARM_Dust NO.33-----------
+  local msg_dust_33 = ''
+  if HMI_DUS_33bak ~= HMI_DUS_33 and check_status(HMI_DUS_33) == 1 then 
+	msg_dust_33 = 'Dust 1 Zone C \nDateTime :'..dtime..'\nDust No.33 = ALARM'
+	sendDiscordMessage(webhookUrl, msg_dust_33)
+	
+	HMI_DUS_33bak = HMI_DUS_33
+
+  end  
+
+  testmsg(1)
+  
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+   if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+ 
+          msg = 'Dust No.33 = '..HMI_DUS_33..'\n--------end loop'
+          sendDiscordMessage(webhookUrl, msg)
+          TempTest = looptest
+    end
 end
