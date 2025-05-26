@@ -1,0 +1,72 @@
+
+function sendDiscordMessage(webhookUrl, message)
+    if message == "" then
+        return false
+    end
+    
+    local https = require("https")
+    local ltn12 = require("ltn12")
+    local json = require("json")
+    
+    local payload = {
+        content = message
+    }
+    
+    local requestBody = json.encode(payload)
+    
+    local response = {}
+    local result, status = https.request{
+        url = "",
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#requestBody)
+        },
+        source = ltn12.source.string(requestBody),
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        return true
+    else
+        return false
+    end
+end
+
+function round(x)
+  return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
+end
+
+local DPM_WH29bak
+local DPM_WH31bak
+
+function discordbot.main()
+  year = os.date("%Y")
+  month = os.date("%m")
+  day = os.date("%d")
+  hour = os.date("%H")
+  minute = os.date("%M")
+  second = os.date("%S")
+  dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
+  
+  local dtime2 = dtime
+  
+------------ALARM_Dust NO.29-----------
+  local DPM_WH29 = addr_getfloat("@Power_total_DPM_WH29")
+  local msg_dust_29 = ''
+  if DPM_WH29bak ~= round(DPM_WH29) and round(DPM_WH29) < 1 then 
+	msg_dust_29 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'Dust No.29 = ALARM'
+	DPM_WH29bak = round(DPM_WH29)
+	
+	sendDiscordMessage(webhookUrl, msg_dust_29)
+  end
+------------ALARM_Dust NO.31-----------
+  local DPM_WH31 = addr_getfloat("@Power_total_DPM_WH31")
+  local msg_dust_31 = ''
+  if DPM_WH31bak ~= round(DPM_WH31) and round(DPM_WH31) < 1 then 
+	msg_dust_31 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'Dust No.31 = ALARM'
+	DPM_WH31bak = round(DPM_WH31)
+	
+	sendDiscordMessage(webhookUrl, msg_dust_31)
+  end
+end
