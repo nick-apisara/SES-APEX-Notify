@@ -23,6 +23,7 @@ local ALARM_CDP_A08 = 0
 local ALARM_HWP_A01 = 0
 local ALARM_HWP_A02 = 0
 
+
 local function getAddrValue(addr)
     local value = addr_getbit(addr)
     return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
@@ -62,6 +63,10 @@ function sendDiscordMessage(webhookUrl, message)
     end
 end
 
+
+   
+
+
 function discordbot.main()
     
   year = os.date("%Y")
@@ -73,7 +78,10 @@ function discordbot.main()
   dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
   
   local message = ''
+  local msg = ''
+
   
+   
 -----------------------------------------ALARM_CHP_A01--------------------------------------------------
   local ALARM_CHP_A01 = addr_getbit("@ALARM_CHP_A01");
   --print("b=="..ALARM_CHP_A01)
@@ -206,4 +214,56 @@ function discordbot.main()
 
    end
    tempBit_12 = ALARM_HWP_A02
+   
+--   testmsg(1)
+    
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+looptest = testtrig
+    if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_B05 = '..ALARM_CHP_A01
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CHP_A02 = '..ALARM_CHP_A02
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CHP_A03 = '..ALARM_CHP_A03
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Pump_CHP_A04 = '..ALARM_CHP_A04
+          sendDiscordMessage(webhookUrl, msg)
+            
+          msg = 'Pump_CHP_A08 = '..ALARM_CHP_A08
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_CDP_A01 = '..ALARM_CDP_A01
+          sendDiscordMessage(webhookUrl, msg)
+          
+		  msg = 'Pump_CDP_A02 = '..ALARM_CDP_A02
+          sendDiscordMessage(webhookUrl, msg)
+
+		  msg = 'Pump_CDP_A03 = '..ALARM_CDP_A03
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_CDP_A04 = '..ALARM_CDP_A04
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_CDP_A08 = '..ALARM_CDP_A08
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_HWP_A01 = '..ALARM_HWP_A01
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'Pump_HWP_A02 = '..ALARM_HWP_A02
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+       end
 end
