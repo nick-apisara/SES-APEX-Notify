@@ -1,3 +1,8 @@
+local DPM_WH29=0
+local DPM_WH31=0
+local DPM_WH29bak=0
+local DPM_WH31bak=0
+
 function sendDiscordMessage(webhookUrl, message)
     if message == "" then
         return false
@@ -32,12 +37,22 @@ function sendDiscordMessage(webhookUrl, message)
     end
 end
 
+function check_status(hmi)
+    if hmi == 1 or hmi == 2 or hmi == 3 then
+        return 0
+    elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
+        return 1
+    end
+end
+
+local function getint(addr)
+    local value = addr_getint(addr,0,2)
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
+end
+
 function round(x)
   return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
 end
-
-local DPM_WH29bak
-local DPM_WH31bak
 
 function discordbot.main()
   year = os.date("%Y")
@@ -50,11 +65,14 @@ function discordbot.main()
   
   local dtime2 = dtime
   
+  DPM_WH29 = getint("@Power_total_DPM_WH29")*0.00001
+  DPM_WH31 = getint("@Power_total_DPM_WH31")*0.00001
+--   print("DPM_WH29=="..DPM_WH29)
+--   print("DPM_WH31=="..DPM_WH31)
+
 ------------ALARM_Dust NO.29-----------
-  local DPM_WH29 = addr_getint("@Power_total_DPM_WH29",0,2)*0.00001
   local msg_dust_29 = ''
 --   print('DPM_WH29=='..DPM_WH29)
-  
   if DPM_WH29bak ~= round(DPM_WH29) and round(DPM_WH29) < 1 then 
 	msg_dust_29 = 'Dust 2 Zone WH \nDateTime :'..dtime2..'\nDust No.29 = ALARM'
 	sendDiscordMessage(webhookUrl, msg_dust_29)
@@ -63,7 +81,6 @@ function discordbot.main()
 
   end
 ------------ALARM_Dust NO.31-----------
-  local DPM_WH31 = addr_getint("@Power_total_DPM_WH31",0,2)*0.00001
   local msg_dust_31 = ''
 --   print('DPM_WH31=='..DPM_WH31)
   if DPM_WH31bak ~= round(DPM_WH31) and round(DPM_WH31) < 1 then 
@@ -72,4 +89,26 @@ function discordbot.main()
 	
 	DPM_WH31bak = round(DPM_WH31)
   end
+  
+--   testmsg(1)
+   
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+   if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.29 = '..DPM_WH29..'\n'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'Dust No.31 = '..DPM_WH31..'\n--------end loop'
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+    end
 end
