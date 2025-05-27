@@ -32,16 +32,17 @@ function sendDiscordMessage(webhookUrl, message)
     end
 end
 
-function round(x)
-  return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
-end
-
 function check_status(hmi)
     if hmi == 1 or hmi == 2 or hmi == 3 then
         return 0
     elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
         return 1
     end
+end
+
+local function getint(addr)
+    local value = addr_getint(addr)
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
 end
 
 local HMI_DUS_28=0
@@ -62,9 +63,9 @@ function discordbot.main()
   
   local dtime2 = dtime
   
-  HMI_DUS_28 = addr_getint("@HMI_DUS_28_status")
-  HMI_DUS_30 = addr_getint("@HMI_DUS_30_status")
-  HMI_DUS_32 = addr_getint("@HMI_DUS_32_status")
+  HMI_DUS_28 = getint("@HMI_DUS_28_status")
+  HMI_DUS_30 = getint("@HMI_DUS_30_status")
+  HMI_DUS_32 = getint("@HMI_DUS_32_status")
   
 --   print("HMI_DUS_32=="..HMI_DUS_32)
 
