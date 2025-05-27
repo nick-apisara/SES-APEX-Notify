@@ -439,6 +439,18 @@ end
       print("Notification pushed of triggering alarm,"..ALARM_Diff_23)
     tempBit_23 = ALARM_Diff_23
     end
+----------------------------------------ALARM_Diff_24--------------------------------------------------
+  local ALARM_Diff_24 = addr_getbit("@ALARM_Diff_24");
+  local Diff_24 = 'Diff. Dust No.24 = '..addr_getword("@Diff_24")..'mmAq';
+  local message_Diff_24 = ''
+
+    if ALARM_Diff_24 == 1 and ddtime == 1 then
+      message_Diff_24 = '\n'..Diff_24..
+                        '\nOver 250mmAq'
+    sendDiscordMessage(webhookUrl, message_Diff_24)
+      print("Notification pushed of triggering alarm,"..ALARM_Diff_24)
+    tempBit_24 = ALARM_Diff_24
+    end
 ----------------------------------------ALARM_Diff_25--------------------------------------------------
   local ALARM_Diff_25 = addr_getbit("@ALARM_Diff_25");
   local Diff_25 = 'Diff. Dust No.25 = '..addr_getword("@Diff_25")..'mmAq';
@@ -831,7 +843,7 @@ end
 
   end  
 
-  testmsg(1)
+--   testmsg(1)
   
 end
 
