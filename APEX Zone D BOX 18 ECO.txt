@@ -59,7 +59,7 @@ function discordbot.main()
     end
     tempBit_12 = ALARM_ECO
     
-    testmsg(1)
+    -- testmsg(1)
 end
 
 local TempTest
