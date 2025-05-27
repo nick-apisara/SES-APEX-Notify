@@ -32,16 +32,17 @@ function sendDiscordMessage(webhookUrl, message)
     end
 end
 
-function round(x)
-  return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
-end
-
 function check_status(hmi)
     if hmi == 1 or hmi == 2 or hmi == 3 then
         return 0
     elseif hmi == 0 or hmi == 4 or hmi == 5 or hmi == 6 then
         return 1
     end
+end
+
+local function getint(addr)
+    local value = addr_getint(addr)
+    return (value ~= nil and value == value) and value or 0 -- Check for nil and NaN
 end
 
 local HMI_DUS_07=0
@@ -52,13 +53,13 @@ local HMI_DUS_11=0
 local HMI_DUS_12=0
 local HMI_DUS_13=0
 
-local HMI_DUS_07bak=0
-local HMI_DUS_08bak=0
-local HMI_DUS_09bak=0
-local HMI_DUS_10bak=0
-local HMI_DUS_11bak=0
-local HMI_DUS_12bak=0
-local HMI_DUS_13bak=0
+local HMI_DUS_07bak
+local HMI_DUS_08bak
+local HMI_DUS_09bak
+local HMI_DUS_10bak
+local HMI_DUS_11bak
+local HMI_DUS_12bak
+local HMI_DUS_13bak
 
 function discordbot.main()
     
@@ -72,13 +73,13 @@ function discordbot.main()
   
   local dtime2 = dtime
   
-  HMI_DUS_07 = addr_getint("@HMI_DUS_07_status")
-  HMI_DUS_08 = addr_getint("@HMI_DUS_08_status")
-  HMI_DUS_09 = addr_getint("@HMI_DUS_09_status")
-  HMI_DUS_10 = addr_getint("@HMI_DUS_10_status")
-  HMI_DUS_11 = addr_getint("@HMI_DUS_11_status")
-  HMI_DUS_12 = addr_getint("@HMI_DUS_12_status")
-  HMI_DUS_13 = addr_getint("@HMI_DUS_13_status")
+  HMI_DUS_07 = getint("@HMI_DUS_07_status")
+  HMI_DUS_08 = getint("@HMI_DUS_08_status")
+  HMI_DUS_09 = getint("@HMI_DUS_09_status")
+  HMI_DUS_10 = getint("@HMI_DUS_10_status")
+  HMI_DUS_11 = getint("@HMI_DUS_11_status")
+  HMI_DUS_12 = getint("@HMI_DUS_12_status")
+  HMI_DUS_13 = getint("@HMI_DUS_13_status")
   
 ------------ALARM_Dust NO.07-----------
   local msg_dust_07 = ''
