@@ -53,7 +53,7 @@ function discordbot.main()
   minute = os.date("%M")
   second = os.date("%S")
   dtime = day.."-"..month.."-"..year.." "..hour..":"..minute..":"..second
-  
+--   print("dtime=="..dtime)
   local message = ''
   
   --------------------------------------------CH_A01_Alarm----------------------------------------------
@@ -110,6 +110,35 @@ function discordbot.main()
    end
    tempBit_5 = CH_A08_Alarm_EQ
     
+--   testmsg(1)
+   
 end
 
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+    if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_A01 = '..CH_A01_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_A02 = '..CH_A02_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_A03 = '..CH_A03_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_A04 = '..CH_A04_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+            
+          msg = 'CHILLER_A08 = '..CH_A08_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+
+          TempTest = looptest
+       end
+end
     
