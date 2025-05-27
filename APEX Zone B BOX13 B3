@@ -63,7 +63,6 @@ function discordbot.main()
   local dtime2 = dtime
   
   local message = ''
-  
   --------------------------------------------CH_B06_Alarm----------------------------------------------
 
   local CH_B06_Alarm_EQ = getAddrValue("@CH_B06_Alarm_EQ");
@@ -81,7 +80,8 @@ function discordbot.main()
 --   print("b=="..CH_B05_Alarm_EQ)
   if CH_B05_Alarm_EQ == 1 and CH_B05_Alarm_EQ ~= tempBit_5 and CH_B05_Alarm_EQ ~= nil then
       message = 'DateTime : '..dtime..'\nCHILLER_B05 = ALARM'
-      sendDiscordMessage(webhookUrl, message)      print("Notification pushed of triggering alarm,"..CH_B05_Alarm_EQ)
+      sendDiscordMessage(webhookUrl, message)      
+      print("Notification pushed of triggering alarm,"..CH_B05_Alarm_EQ)
 
   end
   tempBit_5 = CH_B05_Alarm_EQ
@@ -126,5 +126,39 @@ function discordbot.main()
 
   end
   tempBit_2 = CH_B02_Alarm_EQ
+  
+--   testmsg(1)
    
+end
+
+local TempTest
+local looptest
+
+function testmsg(testtrig)
+   looptest = testtrig
+    if looptest == 1 and TempTest ~= looptest then 
+          msg = 'Test Loop message\n -----'
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_B06 = '..CH_B06_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_B05 = '..CH_B05_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_B03 = '..CH_B03_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+          
+          msg = 'CHILLER_B04 = '..CH_B04_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+            
+          msg = 'CHILLER_B01 = '..CH_B01_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+		  
+		  msg = 'CHILLER_B02 = '..CH_B02_Alarm_EQ
+          sendDiscordMessage(webhookUrl, msg)
+
+
+          TempTest = looptest
+       end
 end
