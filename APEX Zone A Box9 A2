@@ -183,16 +183,18 @@ function discordbot.main()
    end
    tempBit_9 = ALARM_CDP_A04
 -- -------------------------------------------ALARM_CDP_A08-----------------------------------------------
-  local ALARM_CDP_A08 = addr_getbit("@ALARM_CDP_A08");
+  local ALARM_CHP_A08 = addr_getint("@Power_total_CDP_A08",0,2)*0.00001;
+--   print("ALARM_CHP_A08=="..ALARM_CHP_A08)
+--   local ALARM_CDP_A08 = addr_getbit("@ALARM_CDP_A08");
   local message = ''
   -- print("b=="..ALARM_CDP_A08)
-  if ALARM_CDP_A08 == 1 and ALARM_CDP_A08 ~= tempBit_10 then
+  if round(ALARM_CDP_A08) < 1 and round(ALARM_CDP_A08) ~= tempBit_10 then
       message = 'DateTime : '..dtime..'\nPump_CDP_A08 = ALARM'
        sendDiscordMessage(webhookUrl, message)
       print("Notification pushed of triggering alarm,"..ALARM_CDP_A08)
 
   end
-  tempBit_10 = ALARM_CDP_A08
+  tempBit_10 = round(ALARM_CDP_A08)
 ----------------------------------------------ALARM_HWP_A01--------------------------------------------
    local ALARM_HWP_A01 = addr_getbit("@ALARM_HWP_A01");
    local message = ''
